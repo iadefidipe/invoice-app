@@ -62,7 +62,7 @@ export const light: StyleInterface = {
 		},
 	},
 	icon: {
-		path: '/images/icon-moon.svg',
+		path: '/assets/icon-moon.svg',
 		alt: 'moon icon',
 	},
 }
@@ -129,7 +129,7 @@ export const dark: StyleInterface = {
 		},
 	},
 	icon: {
-		path: '/images/icon-sun.svg',
+		path: '/assets/icon-sun.svg',
 		alt: 'sun icon',
 	},
 }
