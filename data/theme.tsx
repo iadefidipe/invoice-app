@@ -1,4 +1,4 @@
-import { StyleInterface } from '../types/StyleInterface'
+import { StyleInterface } from '../types/types'
 
 export const light: StyleInterface = {
 	color: {
