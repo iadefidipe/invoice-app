@@ -60,7 +60,11 @@ export interface StyleInterface {
 		}
 	}
 	icon: {
-		path: string
+		path: any
 		alt: string
 	}
+}
+
+export interface toggleThemeFunc {
+	toggleTheme(): void
 }
