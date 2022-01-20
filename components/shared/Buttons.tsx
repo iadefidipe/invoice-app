@@ -1,6 +1,6 @@
-// import styled, { css } from 'styled-components'
-// import Image from 'next/image'
-// import icon from '../../assets/icon-plus.svg'
+import styled, { css } from 'styled-components'
+import Image from 'next/image'
+import icon from '../../assets/icon-plus.svg'
 
 // const Button = styled.button`
 // 	width: ${(props) => (props.wide ? '100%' : 'initial')};
