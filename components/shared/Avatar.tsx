@@ -6,6 +6,7 @@ const Button = styled.button`
 	height: 2rem;
 	width: 2rem;
 	border: none;
+	border-left: 1px solid white;
 	&,
 	& > *,
 	span {
