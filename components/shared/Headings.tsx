@@ -1,5 +1,9 @@
 import styled, { css } from 'styled-components'
 
+interface HeadingStyled {
+	size?: string
+}
+
 const baseStyles = css`
 	color: ${(props) => props.theme.color.text.heading};
 	font-family: 'Spartan', sans-serif;
@@ -7,28 +11,28 @@ const baseStyles = css`
 	transition: color 0.3s;
 `
 
-export const Heading1 = styled.h1`
+export const Heading1 = styled.h1<HeadingStyled>`
 	${baseStyles}
 	font-size: ${(props) => props.size || '2rem'};
 	line-height: 1.125;
 	letter-spacing: -1px;
 `
 
-export const Heading2 = styled.h2`
+export const Heading2 = styled.h2<HeadingStyled>`
 	${baseStyles}
 	font-size: ${(props) => props.size || '1.25rem'};
 	line-height: 1.1;
 	letter-spacing: -0.63px;
 `
 
-export const Heading3 = styled.h3`
+export const Heading3 = styled.h3<HeadingStyled>`
 	${baseStyles}
 	font-size: ${(props) => props.size || '1rem'};
 	line-height: 1.5;
 	letter-spacing: -0.8px;
 `
 
-export const Heading4 = styled.h4`
+export const Heading4 = styled.h4<HeadingStyled>`
 	${baseStyles}
 	font-size: ${(props) => props.size || '.75rem'};
 	line-height: 1.25;
