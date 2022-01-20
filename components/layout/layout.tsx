@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
-import { light, dark } from '../data/theme'
+import { light, dark } from '../../data/theme'
 import Store from 'store'
 import styled, { ThemeProvider } from 'styled-components'
-import GlobalStyles from '../styles/Globalstyles'
+import GlobalStyles from '../../styles/Globalstyles'
 import Sidebar from './Sidebar'
+import { useAppDispatch, useAppSelector } from '../../redux/types/reduxTypes'
+import { toggleTheme } from '../../redux/features/theme'
 
 type layoutType = {
 	children: React.ReactNode
@@ -20,26 +22,23 @@ const Wrapper = styled.div`
 `
 
 function Layout({ children }: layoutType) {
-	const [theme, setTheme] = useState<theme>('light')
+	//create dispatch function
+	const dispatch = useAppDispatch()
+	const theme = useAppSelector((state) => state.theme.value)
 
 	//using store.js lib for local storage to track
 	useEffect(() => {
 		if (Store.get('theme') === undefined) {
 			Store.set('theme', 'light')
 		}
-		setTheme(Store.get('theme'))
-	}, [setTheme])
+		dispatch(toggleTheme(Store.get('theme')))
+	}, [theme])
 
-	function toggleTheme(): void {
-		Store.set('theme', theme === 'light' ? 'dark' : 'light')
-		setTheme(Store.get('theme'))
-		console.log('hello')
-	}
 	return (
 		<ThemeProvider theme={theme === 'light' ? light : dark}>
 			<GlobalStyles />
 			<Wrapper>
-				<Sidebar toggleTheme={toggleTheme} />
+				<Sidebar />
 				{children}
 			</Wrapper>
 		</ThemeProvider>
