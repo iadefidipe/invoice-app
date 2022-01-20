@@ -1,9 +1,28 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Header from '../components/home/Header'
+import styled from 'styled-components'
+
+// component style
+const Wrapper = styled.main`
+	width: 100%;
+	padding: 0 24px;
+`
+
+const InnerWrapper = styled.main`
+	max-width: 672px;
+	margin: 0 auto;
+`
 
 const Home: NextPage = () => {
-	return <div></div>
+	return (
+		<Wrapper>
+			<InnerWrapper>
+				<Header />
+			</InnerWrapper>
+		</Wrapper>
+	)
 }
 
 export default Home
