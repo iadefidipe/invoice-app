@@ -1,7 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import Header from 'components/home/Header'
+import Header from 'components/home/header/Header'
+import InvoiceItem from 'components/home/invoice/invoiceItem'
 import styled from 'styled-components'
 
 // component style

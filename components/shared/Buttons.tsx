@@ -8,6 +8,7 @@ interface ButtonStyled {
 	tertiary?: string
 	alert?: string
 	quaternary?: string
+	children: React.ReactNode
 }
 
 const Button = styled.button<ButtonStyled>`
@@ -92,16 +93,16 @@ const Icon = styled(Image)`
 	height: 0.625rem;
 `
 
-// export function ButtonPlus({ children, ...rest }) {
-// 	return (
-// 		<StyledButtonPlus {...rest}>
-// 			<IconWrapper>
-// 				<Icon src={icon} alt='' />
-// 			</IconWrapper>
-// 			{children}
-// 		</StyledButtonPlus>
-// 	)
-// }
+export function ButtonPlus({ children, ...rest }: ButtonStyled) {
+	return (
+		<StyledButtonPlus {...rest}>
+			<IconWrapper>
+				<Icon src={icon} alt='' />
+			</IconWrapper>
+			{children}
+		</StyledButtonPlus>
+	)
+}
 
 // delete button
 
