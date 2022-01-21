@@ -16,11 +16,12 @@ const InnerWrapper = styled.main`
 	margin: 0 auto;
 `
 
-const Home: NextPage = () => {
+const Home: NextPage = (): JSX.Element => {
 	return (
 		<Wrapper>
 			<InnerWrapper>
 				<Header />
+				<InvoiceItem />
 			</InnerWrapper>
 		</Wrapper>
 	)
