@@ -1,6 +1,11 @@
 import { createGlobalStyle } from 'styled-components'
+import { StyleInterface } from '../types/types'
 
-export const GlobalStyles = createGlobalStyle`
+interface GlobalStyleInterface {
+	theme: StyleInterface
+}
+
+export const GlobalStyles = createGlobalStyle<GlobalStyleInterface>`
     *,
     *::before,
     *::after {
