@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-type filterState = [
+export type filterState = [
 	{
 		id: 0
 		value: 'paid'

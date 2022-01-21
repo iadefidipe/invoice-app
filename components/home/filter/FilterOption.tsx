@@ -3,13 +3,14 @@ import { useEffect } from 'react'
 import Image from 'next/image'
 import IconCheck from '../../../assets/icon-check.svg'
 import { FilterDropdown, Option, Checkbox } from './FilterOption.style'
+import { filterState } from '../../../redux/features/filter'
 
 // type filterOptionProp = {
 // 	handleClickOutside(e: React.ChangeEvent<HTMLButtonElement>): void
 // }
 
 function FilterOption() {
-	const filters = useAppSelector((state) => state.filter.value)
+	const filters = useAppSelector<filterState>((state) => state.filter.value)
 	const dispatch = useAppDispatch()
 
 	// function handleClick(id) {
