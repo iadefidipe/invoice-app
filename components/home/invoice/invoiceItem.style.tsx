@@ -85,11 +85,14 @@ export const StyledInvoiceStatus = styled(InvoiceStatus)`
 `
 
 export const Arrow = styled.div`
-	border: 2px solid red;
+	/* border: 2px solid red; */
 	display: none;
+	width: 10px;
+	height: 10px;
 
 	@media (min-width: 768px) {
-		display: initial;
+		display: grid;
+		place-content: center;
 		grid-column: 6 / 7;
 		grid-row: 1 / 2;
 	}
