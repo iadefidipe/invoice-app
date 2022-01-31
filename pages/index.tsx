@@ -1,9 +1,10 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import Header from 'components/home/header/Header'
-import InvoiceItem from 'components/home/invoice/invoiceItem'
+// import Header from 'components/home/header/Header'
+// import InvoiceItem from 'components/home/invoice/invoiceItem'
 import styled from 'styled-components'
+import CreateInvoiceForm from '../components/form/CreateInvoiceForm'
 
 // component style
 const Wrapper = styled.main`
@@ -19,10 +20,11 @@ const InnerWrapper = styled.main`
 const Home: NextPage = (): JSX.Element => {
 	return (
 		<Wrapper>
-			<InnerWrapper>
+			{/* <InnerWrapper>
 				<Header />
 				<InvoiceItem />
-			</InnerWrapper>
+			</InnerWrapper> */}
+			<CreateInvoiceForm />
 		</Wrapper>
 	)
 }
