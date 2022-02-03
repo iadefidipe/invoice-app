@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
+    "@types/react-datepicker": "^4.3.4",
     "dayjs": "^1.10.7",
     "firebase": "^9.6.3",
     "formik": "^2.2.9",
