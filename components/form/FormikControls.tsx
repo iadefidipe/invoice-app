@@ -1,10 +1,19 @@
 import React from 'react';
-import DatePicker from './DatePicker';
-import Input from './Input';
+import DateInput from './DatePicker';
+import Input from './input/Input';
 import Select from './Select';
 
-function FormikControls(props) {
-    const {control, ...rest} = props
+interface FormikControlsInterface extends React.DetailedHTMLProps<
+React.LabelHTMLAttributes<HTMLLabelElement>,
+HTMLLabelElement
+> {
+    control: string
+    
+}
+type P = FormikControlsInterface
+
+function FormikControls({control, ...rest}:FormikControlsInterface) {
+    
     
     switch(control){
         case 'input':
@@ -12,7 +21,7 @@ function FormikControls(props) {
         case 'select':
             return <Select {...rest}/>
         case 'date':
-            return <DatePicker{...rest}/>
+            return <DateInput{...rest}/>
         default:
             return null
     } 
