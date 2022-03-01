@@ -2,18 +2,18 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import Store from 'store'
 
 // manage theme toogle state
-const initialOpenState: boolean = false
+const initialExitState: boolean = true
 
-export const openSlice = createSlice({
-	name: 'open',
-	initialState: { value: initialOpenState },
+export const homeExitSlice = createSlice({
+	name: 'exit',
+	initialState: { value: initialExitState },
 	reducers: {
-		toggleOpen: (state, action: PayloadAction<boolean>) => {
+		toggleExit: (state, action: PayloadAction<boolean>) => {
 			state.value = action.payload
 		},
 	},
 })
 
-export const { toggleOpen } = openSlice.actions
+export const { toggleExit} = homeExitSlice.actions
 
-export default openSlice.reducer
+export default homeExitSlice.reducer

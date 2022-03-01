@@ -3,14 +3,12 @@ import DateInput from './DatePicker';
 import Input from './input/Input';
 import Select from './Select';
 
-interface FormikControlsInterface extends React.DetailedHTMLProps<
-React.LabelHTMLAttributes<HTMLLabelElement>,
-HTMLLabelElement
-> {
-    control: string
+interface FormikControlsInterface {
+    control: string,
+   
     
 }
-type P = FormikControlsInterface
+
 
 function FormikControls({control, ...rest}:FormikControlsInterface) {
     

@@ -5,6 +5,7 @@ interface InputStyleInterface {
   hideLabels?: boolean
   valid?: boolean
   faded?: boolean
+  disabled?: boolean
 }
 
 export const InputWrapper = styled.div<InputStyleInterface>`

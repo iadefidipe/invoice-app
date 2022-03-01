@@ -2,7 +2,16 @@ import React from "react"
 import { Field, useField } from "formik"
 import { StyleField, InputWrapper, Label } from "./input.style"
 
-function Input({ label, name, hideLabels, ...rest }) {
+interface InputInterface{
+  label: String
+  name: any
+  hideLabels: boolean
+  disabled?: boolean
+  faded?: boolean
+  rest: {}
+}
+
+function Input({ label, name, hideLabels, ...rest }:InputInterface) : JSX.Element{
   // Destructuring field context
   const [field, meta] = useField(name)
   // const valid = !(meta.touched && meta.error)

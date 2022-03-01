@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import themeReducer from './features/theme'
 import filterReducer from './features/filter'
-import invoiceReducer from './features/invoices'
-import openReducer from './features/open'
+import invoiceReducer from './features/Invoices'
+import openFormReducer from './features/openForm'
+import exitReducer from './features/open'
 
 // creating store with redux toolkit
 export const store = configureStore({
@@ -10,7 +11,8 @@ export const store = configureStore({
 		theme: themeReducer,
 		filter: filterReducer,
 		invoice: invoiceReducer,
-		open:openReducer
+		openForm:openFormReducer,
+		exit: exitReducer
 	},
 })
 

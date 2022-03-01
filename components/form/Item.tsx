@@ -4,6 +4,8 @@ import styled from "styled-components"
 
 import Input from "./input/Input"
 import { DeleteButton } from "../shared/Buttons"
+import { InvoiceInterface } from "types/types"
+
 
 const Wrapper = styled.div`
   display: grid;
@@ -43,8 +45,13 @@ const Wrapper = styled.div`
   }
 `
 
-function item({ index, helpers }) {
-  const { values, setFieldValue } = useFormikContext()
+interface ItemInterface {
+  index:number
+  helpers:any
+}
+
+function item({ index, helpers }:ItemInterface) {
+  const { values, setFieldValue } = useFormikContext<InvoiceInterface>()
 
   useEffect(() => {
     const total = values.items[index].quantity * values.items[index].price

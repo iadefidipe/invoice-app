@@ -62,7 +62,7 @@ const Button = styled.button<ButtonStyled>`
     ${(props) =>
     props.quaternary &&
     css`
-      background: ${props.theme.color.btn.quaternary.bg};
+      /* background: ${props.theme.color.btn.quaternary.bg}; */
       color: ${props.theme.color.btn.quaternary.text};
       :hover {
         background: ${props.theme.color.btn.quaternary.hover};

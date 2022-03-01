@@ -8,8 +8,12 @@ import {
 	InnerWrapper,
 	Button,
 } from './Header.style'
+import { toggleForm } from "../../../redux/features/openForm"
+import { toggleExit } from "../../../redux/features/open"
+import { useAppDispatch, useAppSelector } from "../../../redux/types/reduxTypes"
 
 function Header(): JSX.Element {
+	const dispatch = useAppDispatch()
 	return (
 		<HeaderWrapper>
 			<TextWrapper>
@@ -18,7 +22,8 @@ function Header(): JSX.Element {
 			</TextWrapper>
 			<InnerWrapper>
 				<Filter />
-				<Button>
+				<Button onClick={ () => {dispatch(toggleForm(true))
+				dispatch(toggleExit(false))} } >
 					New <Span>Invoice</Span>
 				</Button>
 			</InnerWrapper>
