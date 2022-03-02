@@ -31,7 +31,7 @@ const Home: NextPage = (): JSX.Element => {
 		<Wrapper>
 			{ exit && <InnerWrapper>
 				<Header />
-				<InvoiceItem />
+				<InvoicesList />
 			</InnerWrapper>}
 			<CreateInvoiceForm />
 		</Wrapper>
