@@ -17,7 +17,7 @@ export function reduceErrors(errors) {
     return [...new Set(messages)]
 }
 
-export function calcTotal(items) {
+export function calcTotal(items:any) {
     let total = 0
     for (const item of items) {
         total += item.total
@@ -25,12 +25,11 @@ export function calcTotal(items) {
     return total
 }
 
-export function createInvoice(status, values) {
+export function createInvoice( values) {
     return ({
         ...values,
         createdAt: dayjs(values.createdAt).format('YYYY-MM-DD'),
         paymentDue: dayjs(values.createdAt).add(Number(values.paymentTerms), 'day').format('YYYY-MM-DD'),
-        status,
         total: calcTotal(values.items)
     })
 }

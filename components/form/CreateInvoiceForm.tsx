@@ -14,7 +14,7 @@ import { updateInvoice } from "../../redux/features/Invoices"
 import { toggleForm } from "../../redux/features/openForm"
 import { toggleExit } from "../../redux/features/open"
 import { FormDataInterface } from "../../data/form"
-
+import { createInvoice } from "../../utilities/form"
 import Store from "store"
 
 // const onSubmit = async (value) => {
@@ -34,7 +34,8 @@ function CreateInvoiceForm() {
 
   //TODO: on form upload value to firebase, get new data from fire base, send to local storage and from local storage to redux start
   const onSubmit = async (value: FormDataInterface, onSubmitProps: any) => {
-    await addDoc(invoiceCollectionRef, value)
+    const newValue = createInvoice(value)
+    await addDoc(invoiceCollectionRef, newValue)
     const data = await getDocs(invoiceCollectionRef)
     Store.set(
       "invoices",
@@ -43,10 +44,13 @@ function CreateInvoiceForm() {
     dispatch(updateInvoice(Store.get("invoices")))
     console.log("submited form", invoice)
     dispatch(updateInvoice(Store.get("invoices")))
-    // console.log("submit", value)
+    // // console.log("submit", value)
     onSubmitProps.resetForm()
     dispatch(toggleForm(false))
     dispatch(toggleExit(true)) 
+    // console.log("submited form", value)
+
+
   }
 
   //TODO: add draft to firebase
