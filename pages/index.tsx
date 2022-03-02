@@ -2,8 +2,13 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Header from 'components/home/header/Header'
-import InvoiceItem from 'components/home/invoice/invoiceItem'
 import styled from 'styled-components'
+import CreateInvoiceForm from '../components/form/CreateInvoiceForm'
+import {useEffect} from 'react'
+import {db} from '../firebase/clientApp'
+import { useAppDispatch, useAppSelector } from "../redux/types/reduxTypes"
+import {collection}  from 'firebase/firestore'
+import InvoicesList from 'components/home/invoice/invoiceList'
 
 // component style
 const Wrapper = styled.main`
@@ -16,13 +21,19 @@ const InnerWrapper = styled.main`
 	margin: 0 auto;
 `
 
+export const invoiceCollectionRef = collection (db, "invoices")
+
 const Home: NextPage = (): JSX.Element => {
+
+	const exit = useAppSelector( (state)=> state.exit.value )
+	
 	return (
 		<Wrapper>
-			<InnerWrapper>
+			{ exit && <InnerWrapper>
 				<Header />
-				<InvoiceItem />
-			</InnerWrapper>
+				<InvoicesList />
+			</InnerWrapper>}
+			<CreateInvoiceForm />
 		</Wrapper>
 	)
 }

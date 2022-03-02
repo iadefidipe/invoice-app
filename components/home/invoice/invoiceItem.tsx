@@ -13,18 +13,28 @@ import dayjs from 'dayjs'
 import arrow from 'assets/icon-arrow-right.svg'
 import Image from 'next/image'
 
-function InvoiceItem(): JSX.Element {
+
+interface InvoiceItemInterface{
+	id: string
+	paymentDue: string
+	clientName: string
+	total: number
+	status: string
+
+}
+
+function InvoiceItem({id,paymentDue,clientName,total,status}:InvoiceItemInterface): JSX.Element {
 	return (
 		<Link href={`/invoice`} passHref={true} scroll={false}>
 			<StyledLink variants={animation}>
 				<Id>
 					<span>#</span>
-					RT3080
+					{id.slice(0,5)}
 				</Id>
-				<PaymentDue>Due {dayjs('12/12/12').format('DD MMM YYYY')}</PaymentDue>
-				<ClientName>Israel Adefidipe</ClientName>
-				<Total as='div'>£560</Total>
-				<StyledInvoiceStatus status='pending' />
+				<PaymentDue>Due {dayjs(paymentDue).format('DD MMM YYYY')}</PaymentDue>
+				<ClientName>{clientName}</ClientName>
+				<Total as='div'>{total}</Total>
+				<StyledInvoiceStatus status={status} />
 				<Arrow>
 					<Image src={arrow} alt='' />
 				</Arrow>
