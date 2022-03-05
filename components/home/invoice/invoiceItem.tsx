@@ -25,7 +25,7 @@ interface InvoiceItemInterface{
 
 function InvoiceItem({id,paymentDue,clientName,total,status}:InvoiceItemInterface): JSX.Element {
 	return (
-		<Link href={`/invoice`} passHref={true} scroll={false}>
+		<Link href={`/invoice/${id}`} passHref={true} >
 			<StyledLink variants={animation}>
 				<Id>
 					<span>#</span>
