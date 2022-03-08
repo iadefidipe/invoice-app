@@ -1,6 +1,6 @@
-import { Formik, Form } from "formik"
+import { Formik} from "formik"
 import { AnimatePresence } from "framer-motion"
-import { initialValues, validationSchema } from "../../data/form"
+import { initialValues, validationSchema } from "data/form"
 import Button from "../shared/Buttons"
 import {
   CreateInvoiceFormHeading as Heading,
@@ -9,13 +9,14 @@ import {
 import Fields from "./Fields"
 import { invoiceCollectionRef } from "pages"
 import { addDoc, getDocs } from "firebase/firestore"
-import { useAppDispatch, useAppSelector } from "../../redux/types/reduxTypes"
-import { updateInvoice } from "../../redux/features/Invoices"
-import { toggleForm } from "../../redux/features/openForm"
-import { toggleExit } from "../../redux/features/open"
-import { FormDataInterface } from "../../data/form"
-import { createInvoice } from "../../utilities/form"
+import { useAppDispatch, useAppSelector } from "redux/types/reduxTypes"
+import { updateInvoice } from "redux/features/Invoices"
+import { toggleForm } from "redux/features/openForm"
+import { toggleExit } from "redux/features/open"
+import { FormDataInterface } from "data/form"
+import { createInvoice } from "utilities/form"
 import Store from "store"
+import Form from './Form'
 
 // const onSubmit = async (value) => {
 //   await addDoc(invoiceCollectionRef, value)
@@ -43,7 +44,7 @@ function CreateInvoiceForm() {
     )
     dispatch(updateInvoice(Store.get("invoices")))
     console.log("submited form", invoice)
-    dispatch(updateInvoice(Store.get("invoices")))
+ 
     // // console.log("submit", value)
     onSubmitProps.resetForm()
     dispatch(toggleForm(false))

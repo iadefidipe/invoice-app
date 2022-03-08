@@ -22,7 +22,7 @@ const animation = {
 
 export default function InvoicesList() {
     const invoices = useAppSelector((state) => state.invoice.value)
-    console.log('invoice item', invoices)
+    
     return (
         <>
             {invoices && 

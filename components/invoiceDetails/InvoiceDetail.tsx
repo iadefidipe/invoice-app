@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { InnerWrapper } from "pages/index"
 import { useAppSelector } from "redux/types/reduxTypes"
 import { InvoiceInterface } from "types/types"
