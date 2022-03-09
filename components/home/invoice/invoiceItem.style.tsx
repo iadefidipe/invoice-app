@@ -4,11 +4,12 @@ import { fontStylesA } from 'components/shared/typography'
 import { motion } from 'framer-motion'
 import InvoiceStatus from 'components/shared/InvoiceStatus'
 
+
 export const StyledLink = styled(motion.a)`
 	display: grid;
 	grid-template-rows: max-content 1fr;
 	width: 100%;
-	border: 1px solid transparent;
+	border: 1px solid red ;
 	border-radius: 8px;
 	padding: 1rem 1.5rem;
 	background: ${(props) => props.theme.color.invoiceItem.bg};

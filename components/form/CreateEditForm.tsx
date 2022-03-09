@@ -1,11 +1,7 @@
-import { Formik} from "formik"
+import { Formik } from "formik"
 import { AnimatePresence } from "framer-motion"
 import { initialValues, validationSchema } from "data/form"
 import Button from "../shared/Buttons"
-import {
-  CreateInvoiceFormHeading as Heading,
-  CreateInvoiceFormButtons as Buttons,
-} from "./Components"
 import Fields from "./Fields"
 import { invoiceCollectionRef } from "pages"
 import { addDoc, getDocs } from "firebase/firestore"
@@ -13,25 +9,24 @@ import { useAppDispatch, useAppSelector } from "redux/types/reduxTypes"
 import { updateInvoice } from "redux/features/Invoices"
 import { toggleForm } from "redux/features/openForm"
 import { toggleExit } from "redux/features/open"
+import { toggleEditForm } from "redux/features/openEditForm"
 import { FormDataInterface } from "data/form"
 import { createInvoice } from "utilities/form"
 import Store from "store"
-import Form from './Form'
+import Form from "./Form"
+import { InvoiceInterface } from "types/types"
+import { 
+  EditInvoiceFormHeading as Heading, 
+  EditInvoiceFormButtons as Buttons 
+} from './Components'
 
-// const onSubmit = async (value) => {
-//   await addDoc(invoiceCollectionRef, value)
-//   const data = await getDocs(invoiceCollectionRef)
-//   Store.set(
-//     "invoices",
-//     data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-//   )
-//   dispatch(updateInvoice(Store.get("invoices")))
-// }
+interface CreateEditFormInterface {
+  invoice: FormDataInterface
+}
 
-function CreateInvoiceForm() {
+function CreateEditForm({ invoice }: CreateEditFormInterface) {
   const dispatch = useAppDispatch()
-  const invoice = useAppSelector((state) => state.invoice.value)
-  const open = useAppSelector((state) => state.openForm.value)
+  const open = useAppSelector((state) => state.openEditForm.value)
 
   //TODO: on form upload value to firebase, get new data from fire base, send to local storage and from local storage to redux start
   const onSubmit = async (value: FormDataInterface, onSubmitProps: any) => {
@@ -44,57 +39,45 @@ function CreateInvoiceForm() {
     )
     dispatch(updateInvoice(Store.get("invoices")))
     console.log("submited form", invoice)
- 
+
     // // console.log("submit", value)
     onSubmitProps.resetForm()
     dispatch(toggleForm(false))
-    dispatch(toggleExit(true)) 
-    // console.log("submited form", value)
-
-
-  }
-
-  //TODO: add draft to firebase
-  const addDraft = async (value: FormDataInterface) => {
-    await addDoc(invoiceCollectionRef, { ...value, status: "draft" })
-    const data = await getDocs(invoiceCollectionRef)
-    console.log("draft", data)
-    dispatch(toggleForm(false))
     dispatch(toggleExit(true))
+    // console.log("submited form", value)
   }
 
   return (
     <AnimatePresence>
       {open && (
         <Formik
-          initialValues={initialValues}
+          initialValues={{
+            senderAddress: invoice.senderAddress,
+            clientName: invoice.clientName,
+            clientEmail: invoice.clientEmail,
+            clientAddress: invoice.clientAddress,
+            createdAt: new Date(invoice.createdAt),
+            paymentTerms: invoice.paymentTerms,
+            description: invoice.description,
+            items: invoice.items,
+          }}
           validationSchema={validationSchema}
           onSubmit={onSubmit}
         >
           {(formik) => (
             <Form>
-              <Heading>Create Form</Heading>
+              <Heading>Edit <span>#</span>{invoice.id}</Heading>
               <Fields />
 
               <Buttons>
-                <Button
-                  type='reset'
-                  onClick={() => {
-                    dispatch(toggleForm(false))
+                
+                <Button type='reset' onClick={() => {
+                    dispatch(toggleEditForm(false))
                     dispatch(toggleExit(true))
-                  }}
-                  secondary
-                >
-                  Discard
+                  }} secondary>
+                  Cancel
                 </Button>
-                <Button
-                  type='button'
-                  onClick={() => addDraft(formik.values)}
-                  tertiary
-                >
-                  Save as Draft
-                </Button>
-                <Button type='submit'>Save & Send</Button>
+                <Button type='submit'>Save Changes</Button>
               </Buttons>
             </Form>
           )}
@@ -104,4 +87,4 @@ function CreateInvoiceForm() {
   )
 }
 
-export default CreateInvoiceForm
+export default CreateEditForm
