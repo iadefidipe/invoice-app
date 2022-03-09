@@ -71,7 +71,7 @@ export interface toggleThemeFunc {
 
 export interface InvoiceInterface{
 	"id": string,
-	"createdAt": string,
+	"createdAt": Date,
 	"paymentDue": string,
 	"description": string,
 	"paymentTerms": number,
