@@ -5,7 +5,7 @@ import { FormDataInterface } from "../../data/form"
 
 
 // manage theme toogle state
-const initialInvoiceState: FormDataInterface[] = Store.get("invoices")
+const initialInvoiceState: FormDataInterface[] = []
 
 export const invoiceSlice = createSlice({
   name: "invoice",
