@@ -3,6 +3,7 @@ import ScrollLock from "react-scrolllock"
 import { motion } from "framer-motion"
 import { useAppDispatch } from "redux/types/reduxTypes"
 import { toggleForm } from "redux/features/openForm"
+import { toggleEditForm } from "redux/features/openEditForm"
 
 const StyledBackdrop = styled(motion.div)`
   position: fixed;
@@ -14,8 +15,8 @@ const StyledBackdrop = styled(motion.div)`
   width: 100%;
   height: 100vh;
   z-index: 5;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-  border: 2px green solid;
+  /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)); */
+  background: red;
 `
 
 const animation = {
@@ -26,11 +27,11 @@ const animation = {
   },
 }
 
-interface BackdropInterface {
-    children: React.ReactNode
+interface BackdropPropInterface {
+  edit: boolean
 }
 
-export default function Backdrop({ children }:BackdropInterface) {
+export default function Backdrop({ edit }:BackdropPropInterface ) {
   const dispatch = useAppDispatch()
 
   return (
@@ -40,10 +41,10 @@ export default function Backdrop({ children }:BackdropInterface) {
         initial='hidden'
         animate='visible'
         exit='hidden'
-        onClick={() => dispatch(toggleForm(false))}
-      >
-        {children}
-      </StyledBackdrop>
+        onClick={() =>
+          edit ? dispatch(toggleEditForm(false)) : dispatch(toggleForm(false))
+        }
+      />
     </ScrollLock>
   )
 }
