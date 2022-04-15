@@ -15,8 +15,8 @@ const StyledBackdrop = styled(motion.div)`
   width: 100%;
   height: 100vh;
   z-index: 5;
-  /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)); */
-  background: red;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  /* background: red; */
 `
 
 const animation = {

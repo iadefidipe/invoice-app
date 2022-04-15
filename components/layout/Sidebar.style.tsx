@@ -14,6 +14,7 @@ export const SidebarWrapper = styled.aside`
 	position: sticky;
 	justify-content: space-between;
 	align-items: center;
+	z-index:1000;
 
 	@media (min-width: 900px) {
 		border-radius: 0 20px 20px 0;

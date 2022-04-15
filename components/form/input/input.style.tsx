@@ -4,8 +4,6 @@ import { fontStylesA } from "../../shared/typography"
 interface InputStyleInterface {
   hideLabels?: boolean
   valid?: boolean
-  faded?: boolean
-  disabled?: boolean
 }
 
 export const InputWrapper = styled.div<InputStyleInterface>`
@@ -39,10 +37,11 @@ export const Label = styled.label<InputStyleInterface>`
   transition: color 0.3s;
 `
 export const StyleField = styled.input<InputStyleInterface>`
-  ${fontStylesA}
   width: 100%;
-  border: 1px solid
-    ${(props) => (props.valid ? props.theme.color.form.fieldBorder : "#EC5757")};
+  border: ${({ valid, theme }) =>
+    valid
+      ? ` 1px solid ${theme.color.form.fieldBorder} `
+      : "1px solid #EC5757"};
   border-radius: 4px;
   padding: 1rem 1.25rem;
   background: ${(props) => props.theme.color.form.fieldBg};
@@ -50,6 +49,7 @@ export const StyleField = styled.input<InputStyleInterface>`
   color: ${(props) => props.theme.color.text.heading};
   font-weight: bold;
   transition: color 0.3s, border 0.3s, background 0.3s;
+  /* ${fontStylesA} */
   ::placeholder {
     color: ${(props) => props.theme.color.text.placeholder};
     transition: color 0.3s;
@@ -57,15 +57,4 @@ export const StyleField = styled.input<InputStyleInterface>`
   :focus {
     border: 1px solid #9277ff;
   }
-  ${(props) =>
-    props.faded &&
-    css`
-      border: none;
-      padding: 1rem 0;
-      background: transparent;
-      color: #888eb0;
-      :focus {
-        border: none;
-      }
-    `}
 `

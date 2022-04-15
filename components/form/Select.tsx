@@ -46,7 +46,7 @@ const StyledSelect = styled.select`
 interface SelectInterface {
   label: string
   name: string
-  options: { name: string; value: number }[]
+  options?: { name: string; value: number }[]
 }
 
 function Select({ label, name, options, ...rest }: SelectInterface) {
@@ -56,7 +56,7 @@ function Select({ label, name, options, ...rest }: SelectInterface) {
       <Label htmlFor={name}>{label}</Label>
       <SelectWrapper>
         <StyledSelect {...field}>
-          {options.map((option) => {
+          {options?.map((option) => {
             return (
               <option key={option.value} value={option.value}>
                 {option.name}

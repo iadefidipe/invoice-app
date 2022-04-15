@@ -13,9 +13,7 @@ interface InputInterface{
 function Input({ label, name, hideLabels, ...rest }:InputInterface) : JSX.Element{
   // Destructuring field context
   const [field, meta] = useField(name)
-  // const valid = !(meta.touched && meta.error)
 
-  // console.log(valid)
 
   return (
     <InputWrapper hideLabels={hideLabels}>
@@ -36,14 +34,6 @@ function Input({ label, name, hideLabels, ...rest }:InputInterface) : JSX.Elemen
           )
         }}
       </Field>
-
-      {/* <StyleField
-        id={name}
-        {...field}
-        
-        valid={!(meta.touched && meta.error)}
-        {...rest}
-      /> */}
     </InputWrapper>
   )
 }

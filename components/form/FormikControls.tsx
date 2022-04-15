@@ -7,10 +7,11 @@ interface FormikControlsInterface {
   control: string
   label: string
   name: string
-  options: {
+  options?: {
     name: string
     value: number
   }[]
+  placeholder?:string
 }
 
 function FormikControls({
