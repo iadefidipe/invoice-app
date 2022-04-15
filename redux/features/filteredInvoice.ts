@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-import { FormDataInterface } from "data/form"
+import { InvoiceInterface } from "data/form"
 
-const initialInvoiceState: FormDataInterface[] = []
+const initialInvoiceState: InvoiceInterface[] = []
 
 export const filteredInvoiceslice = createSlice({
   name: "filter",
   initialState: { value: initialInvoiceState },
   reducers: {
-    filterInvoice: (state, action: PayloadAction<FormDataInterface[]>) => {
+    filterInvoice: (state, action: PayloadAction<InvoiceInterface[]>) => {
       state.value = action.payload
     },
   },

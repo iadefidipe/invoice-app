@@ -3,7 +3,7 @@ import InvoiceItem from "./invoiceItem"
 import { motion } from "framer-motion"
 import { useAppSelector, useAppDispatch } from "redux/types/reduxTypes"
 import { useEffect, useState } from "react"
-import { FormDataInterface } from "data/form"
+import { InvoiceInterface } from "data/form"
 import { filterInvoice } from "redux/features/filteredInvoice"
 import NoInvoices from "./NoInvoice"
 
@@ -32,14 +32,14 @@ export default function InvoicesList() {
   const filteredInvoice = useAppSelector((state) => state.filteredInvoice.value)
 
   const [renderInvoices, setRenderInvoice] =
-    useState<FormDataInterface[]>(invoices)
+    useState<InvoiceInterface[]>(invoices)
 
   useEffect(() => {
     const getInvoice = () => {
       const checkedFilter = filters.filter((filter) => filter.checked === true)
 
       let filteredInvoice = invoices.filter(
-        (invoice) => invoice.status === checkedFilter[0]?.value
+        (invoice) => invoice.status === checkedFilter[0].value
       )
       if (checkedFilter[0]) {
         return filteredInvoice
