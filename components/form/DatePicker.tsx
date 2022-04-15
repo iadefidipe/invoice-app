@@ -1,24 +1,12 @@
-import  { forwardRef } from "react"
+import React from "react"
 import DatePicker from "react-datepicker"
 import { Field, useFormikContext, useField } from "formik"
 import "react-datepicker/dist/react-datepicker.css"
 import styled from "styled-components"
 import Image from "next/image"
-import calenderIcon from '../../assets/icon-calendar.svg'
+import calenderIcon from "../../assets/icon-calendar.svg"
 
 import { fontStylesA } from "../shared/typography"
-
-interface DatePickerStyleInterface {
-  valid?: string
-}
-interface FowardrefInterface {
-  value: Date | null
-  onClick: () => void
-}
-interface DatePropInterface{
-  label: string
-  name: string
-}
 
 const Wrapper = styled.div`
   display: grid;
@@ -60,17 +48,30 @@ const Button = styled.button<DatePickerStyleInterface>`
   }
 `
 
+interface DatePickerStyleInterface {
+  valid?: string
+}
+interface CustomInputInterface {
+  value: Date | null
+  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+}
+interface DatePropInterface {
+  label: string
+  name: string
+}
 
-function DateInput({ label, name }: DatePropInterface ){
+function DateInput({ label, name }: DatePropInterface) {
   const { setFieldValue } = useFormikContext()
   const [field, meta] = useField(name)
 
-  const CustomInput = forwardRef<HTMLButtonElement, FowardrefInterface > (({ value, onClick }, ref) => (
-    <Button type='button' onClick={onClick} ref={ref} valid='true'>
-      <span>{value}</span>
-      <Image src={calenderIcon}  alt='' />
-    </Button>
-  ))
+  const CustomInput = function ({ value, onClick }: CustomInputInterface) {
+    return (
+      <Button type='button' onClick={onClick} valid='true'>
+        <span>{value}</span>
+        <Image src={calenderIcon} alt='' />
+      </Button>
+    )
+  }
 
   return (
     <Wrapper>
@@ -82,7 +83,7 @@ function DateInput({ label, name }: DatePropInterface ){
         {...field}
         selected={field.value}
         onChange={(value) => setFieldValue(name, value)}
-        customInput={<CustomInput />}
+        customInput={React.createElement(CustomInput)}
         dateFormat='MMM d, yyyy'
         showYearDropdown
         scrollableMonthYearDropdown
