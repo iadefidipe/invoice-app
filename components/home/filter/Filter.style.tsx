@@ -10,6 +10,7 @@ interface FilterStyleType {
 
 export const FilterWrapper = styled.div`
 	position: relative;
+	border: 2px red solid;
 `
 export const Header = styled.button`
 	${flex}

@@ -1,57 +1,56 @@
-import { useAppSelector, useAppDispatch } from '../../../redux/types/reduxTypes'
-import { useEffect } from 'react'
-import Image from 'next/image'
-import IconCheck from '../../../assets/icon-check.svg'
-import { FilterDropdown, Option, Checkbox } from './FilterOption.style'
-import { filterState } from '../../../redux/features/filter'
+import { useAppSelector, useAppDispatch } from "../../../redux/types/reduxTypes"
+import { useEffect } from "react"
+import Image from "next/image"
+import IconCheck from "../../../assets/icon-check.svg"
+import { FilterDropdown, Option, Checkbox } from "./FilterOption.style"
+import filter, { toggleFilter, filterState } from "redux/features/filter"
+import { useState } from "react"
 
 // type filterOptionProp = {
 // 	handleClickOutside(e: React.ChangeEvent<HTMLButtonElement>): void
 // }
 
 function FilterOption() {
-	const filters = useAppSelector<filterState>((state) => state.filter.value)
-	const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
 
-	// function handleClick(id) {
-	// 	setOptions(
-	// 		Filter.map((filter) => {
-	// 			if (id === filter.id) {
-	// 				setFilter(filter.checked ? null : filter.value)
-	// 				return { ...filter, checked: !filter.checked }
-	// 			}
-	// 			return { ...filter, checked: false }
-	// 		})
-	// 	)
-	// }
+  const filters = useAppSelector((state) => state.filter.value)
 
-	// useEffect(() => {
-	// 	document.addEventListener('mousedown', handleClickOutside)
-	// 	return () => {
-	// 		document.removeEventListener('mousedown', handleClickOutside)
-	// 	}
-	// })
+  function handleChange(id: number, array: filterState[]) {
+    const newFilters = array.map((filter) => {
+      if (!(filter.id === id)) {
+        return { ...filter, checked: false }
+      }
+      if (filter.id === id) {
+        return { ...filter, checked: !filter.checked }
+      }
 
-	return (
-		<FilterDropdown>
-			{filters.map((filter) => (
-				<Option key={filter.id}>
-					<input
-						type='checkbox'
-						// checked={checked}
-						// onChange={() => {
-						// 	handleClick(id)
-						// }}
-					/>
-					<Checkbox className='checkbox'>
-						<Image src={IconCheck} alt='' />
-					</Checkbox>
+      return filter
+    })
 
-					<span>{filter.value}</span>
-				</Option>
-			))}
-		</FilterDropdown>
-	)
+    dispatch(toggleFilter(newFilters))
+  }
+
+  return (
+    <FilterDropdown>
+      {filters.map((filter) => (
+        <Option key={filter.id}>
+          <input
+            type='checkbox'
+            checked={filter.checked}
+            value={filter.value}
+            onChange={() => {
+              handleChange(filter.id, filters)
+            }}
+          />
+          <Checkbox className='checkbox'>
+            <Image src={IconCheck} alt='' />
+          </Checkbox>
+
+          <span>{filter.value}</span>
+        </Option>
+      ))}
+    </FilterDropdown>
+  )
 }
 
 export default FilterOption
