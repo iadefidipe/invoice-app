@@ -4,24 +4,24 @@ import { initialValues, validationSchema } from "data/form"
 import Button from "../shared/Buttons"
 import Fields from "./Fields"
 import { invoiceCollectionRef } from "pages"
-import { addDoc, getDocs } from "firebase/firestore"
+import { addDoc, getDocs, updateDoc, doc } from "firebase/firestore"
+import { db } from "../../firebase/clientApp"
 import { useAppDispatch, useAppSelector } from "redux/types/reduxTypes"
 import { updateInvoice } from "redux/features/Invoices"
 import { toggleForm } from "redux/features/openForm"
 import { toggleExit } from "redux/features/open"
 import { toggleEditForm } from "redux/features/openEditForm"
-import { FormDataInterface } from "data/form"
+import { InvoiceInterface, FormDataInterface } from "data/form"
 import { createInvoice } from "utilities/form"
 import Store from "store"
 import Form from "./Form"
-import { InvoiceInterface } from "types/types"
-import { 
-  EditInvoiceFormHeading as Heading, 
-  EditInvoiceFormButtons as Buttons 
-} from './Components'
+import {
+  EditInvoiceFormHeading as Heading,
+  EditInvoiceFormButtons as Buttons,
+} from "./Components"
 
 interface CreateEditFormInterface {
-  invoice: FormDataInterface
+  invoice: InvoiceInterface
 }
 
 function CreateEditForm({ invoice }: CreateEditFormInterface) {
@@ -31,20 +31,21 @@ function CreateEditForm({ invoice }: CreateEditFormInterface) {
   //TODO: on form upload value to firebase, get new data from fire base, send to local storage and from local storage to redux start
   const onSubmit = async (value: FormDataInterface, onSubmitProps: any) => {
     const newValue = createInvoice(value)
-    await addDoc(invoiceCollectionRef, newValue)
+
+    const invoiceDoc = await doc(db, "invoices", invoice.id)
+    await updateDoc(invoiceDoc, newValue)
     const data = await getDocs(invoiceCollectionRef)
     Store.set(
       "invoices",
       data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
     )
     dispatch(updateInvoice(Store.get("invoices")))
-    console.log("submited form", invoice)
 
     // // console.log("submit", value)
     onSubmitProps.resetForm()
-    dispatch(toggleForm(false))
-    dispatch(toggleExit(true))
-    // console.log("submited form", value)
+    dispatch(toggleEditForm(false))
+
+    // // console.log("submited form", value)
   }
 
   return (
@@ -60,21 +61,29 @@ function CreateEditForm({ invoice }: CreateEditFormInterface) {
             paymentTerms: invoice.paymentTerms,
             description: invoice.description,
             items: invoice.items,
+            status: invoice.status,
+            total: invoice.total,
+            paymentDue: invoice.paymentDue,
           }}
           validationSchema={validationSchema}
           onSubmit={onSubmit}
         >
           {(formik) => (
-            <Form>
-              <Heading>Edit <span>#</span>{invoice.id}</Heading>
+            <Form edit>
+              <Heading>
+                Edit <span>#</span>
+                {invoice.id}
+              </Heading>
               <Fields />
 
               <Buttons>
-                
-                <Button type='reset' onClick={() => {
+                <Button
+                  type='reset'
+                  onClick={() => {
                     dispatch(toggleEditForm(false))
-                    dispatch(toggleExit(true))
-                  }} secondary>
+                  }}
+                  secondary
+                >
                   Cancel
                 </Button>
                 <Button type='submit'>Save Changes</Button>

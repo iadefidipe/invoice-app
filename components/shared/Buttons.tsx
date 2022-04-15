@@ -8,6 +8,7 @@ interface ButtonStyled {
   tertiary?: boolean
   alert?: boolean
   quaternary?: boolean
+  onClick?: () => void
   children: React.ReactNode
 }
 

@@ -1,17 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import Store from "store"
-import { InvoiceInterface } from "types/types"
-import { FormDataInterface } from "../../data/form"
+import { InvoiceInterface } from "../../data/form"
 
 
-// manage theme toogle state
-const initialInvoiceState: FormDataInterface[] = Store.get("invoices")
+
+const initialInvoiceState: InvoiceInterface[] = []
 
 export const invoiceSlice = createSlice({
   name: "invoice",
   initialState: { value: initialInvoiceState },
   reducers: {
-    updateInvoice: (state, action: PayloadAction<FormDataInterface[]>) => {
+    updateInvoice: (state, action: PayloadAction<InvoiceInterface[]>) => {
       state.value = action.payload
     },
   },

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { fontStylesA } from './typography'
 
 interface InvoiceStatusType {
-	status: string
+	status?: string
 	className?: string
 }
 
@@ -50,7 +50,7 @@ export default function InvoiceStatus({
 	return (
 		<Wrapper className={className} status={status}>
 			<Circle status={status} />
-			<Text status={status}>{status}</Text>
+			<Text status={status}> {status} </Text>
 		</Wrapper>
 	)
 }

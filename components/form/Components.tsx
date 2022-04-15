@@ -18,7 +18,7 @@ export const EditInvoiceFormHeading = styled(Heading)`
 const Buttons = styled.div`
     display: flex;
     gap: .5rem;
-    padding 2rem 0;
+    padding: 2rem 0;
     > button {
         padding: 1rem;
     }

@@ -6,6 +6,7 @@ import openFormReducer from "./features/openForm"
 import exitReducer from "./features/open"
 import openEditFormReducer from "./features/openEditForm"
 import popUpReducer from "./features/popUp"
+import filteredInvoiceReducer from "./features/filteredInvoice"
 
 // creating store with redux toolkit
 export const store = configureStore({
@@ -16,7 +17,8 @@ export const store = configureStore({
     openForm: openFormReducer,
     exit: exitReducer,
     openEditForm: openEditFormReducer,
-	popUpOpen: popUpReducer
+    popUpOpen: popUpReducer,
+    filteredInvoice: filteredInvoiceReducer,
   },
 })
 

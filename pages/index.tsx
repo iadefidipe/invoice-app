@@ -13,6 +13,8 @@ import { addDoc, getDocs } from "firebase/firestore"
 import Main from "../components/home/Main"
 import { updateInvoice } from "redux/features/Invoices"
 import Store from "store"
+import { InvoiceInterface } from "../data/form"
+import { getInvoice } from "utilities/Misc"
 
 // component style
 const Wrapper = styled.main`
@@ -32,19 +34,17 @@ const Home: NextPage = (): JSX.Element => {
   // const invoices = useAppSelector((state) => state.invoice.value)
 
   const dispatch = useAppDispatch()
+
   useEffect(() => {
+    //get data from firebase once app loads
     const getData = async () => {
       const data = await getDocs(invoiceCollectionRef)
-      const invoices = data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-      Store.set(
-        "invoices",
-        data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-      )
-      dispatch(updateInvoice(Store.get("invoices")))
-      console.log("submited form", invoices)
+      const invoices: InvoiceInterface[] = getInvoice(data)
+      // console.log(invoices)
+      dispatch(updateInvoice(invoices))
     }
     getData()
-  }, [])
+  })
 
   return (
     <>
@@ -52,12 +52,11 @@ const Home: NextPage = (): JSX.Element => {
         <title>Invoices - Frontend Mentor</title>
       </Head>
       <Wrapper>
-        
-          <InnerWrapper>
-            <Header />
-            <InvoicesList />
-          </InnerWrapper>
-       
+        <InnerWrapper>
+          <Header />
+          <InvoicesList />
+        </InnerWrapper>
+
         <CreateInvoiceForm />
       </Wrapper>
     </>

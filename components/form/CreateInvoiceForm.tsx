@@ -1,4 +1,4 @@
-import { Formik} from "formik"
+import { Formik } from "formik"
 import { AnimatePresence } from "framer-motion"
 import { initialValues, validationSchema } from "data/form"
 import Button from "../shared/Buttons"
@@ -13,24 +13,15 @@ import { useAppDispatch, useAppSelector } from "redux/types/reduxTypes"
 import { updateInvoice } from "redux/features/Invoices"
 import { toggleForm } from "redux/features/openForm"
 import { toggleExit } from "redux/features/open"
-import { FormDataInterface } from "data/form"
+import { InvoiceInterface, FormDataInterface } from "data/form"
 import { createInvoice } from "utilities/form"
 import Store from "store"
-import Form from './Form'
-
-// const onSubmit = async (value) => {
-//   await addDoc(invoiceCollectionRef, value)
-//   const data = await getDocs(invoiceCollectionRef)
-//   Store.set(
-//     "invoices",
-//     data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-//   )
-//   dispatch(updateInvoice(Store.get("invoices")))
-// }
+import Form from "./Form"
+import { getInvoice } from "utilities/Misc"
 
 function CreateInvoiceForm() {
-  const dispatch = useAppDispatch()
-  const invoice = useAppSelector((state) => state.invoice.value)
+  const dispatch: any = useAppDispatch()
+  // const invoice = useAppSelector((state) => state.invoice.value)
   const open = useAppSelector((state) => state.openForm.value)
 
   //TODO: on form upload value to firebase, get new data from fire base, send to local storage and from local storage to redux start
@@ -38,27 +29,21 @@ function CreateInvoiceForm() {
     const newValue = createInvoice(value)
     await addDoc(invoiceCollectionRef, newValue)
     const data = await getDocs(invoiceCollectionRef)
-    Store.set(
-      "invoices",
-      data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-    )
-    dispatch(updateInvoice(Store.get("invoices")))
-    console.log("submited form", invoice)
- 
-    // // console.log("submit", value)
+    const invoices: InvoiceInterface[] = getInvoice(data)
+    dispatch(updateInvoice(invoices))
     onSubmitProps.resetForm()
     dispatch(toggleForm(false))
-    dispatch(toggleExit(true)) 
-    // console.log("submited form", value)
-
-
+    dispatch(toggleExit(true))
   }
 
   //TODO: add draft to firebase
   const addDraft = async (value: FormDataInterface) => {
-    await addDoc(invoiceCollectionRef, { ...value, status: "draft" })
+    const newValue = createInvoice(value)
+    await addDoc(invoiceCollectionRef, { ...newValue, status: "draft" })
     const data = await getDocs(invoiceCollectionRef)
-    console.log("draft", data)
+    const invoices: InvoiceInterface[] = getInvoice(data)
+    dispatch(updateInvoice(invoices))
+
     dispatch(toggleForm(false))
     dispatch(toggleExit(true))
   }

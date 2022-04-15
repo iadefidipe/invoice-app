@@ -1,41 +1,27 @@
-import { useAppSelector } from "../../redux/types/reduxTypes"
+import { GetStaticProps, GetStaticPaths } from "next"
 import { invoiceCollectionRef } from "../index"
-import { addDoc, getDocs } from "firebase/firestore"
-// import Store from 'store'
-// import { invoiceData } from '../../components/form/CreateInvoiceForm'
-import { InvoiceInterface } from "types/types"
-import Store from "store"
+import { getDocs } from "firebase/firestore"
 import Head from "next/head"
 import InvoiceDetail from "components/invoiceDetails/InvoiceDetail"
 
-// const Data =async (): Promise<InvoiceInterface[]> => {
-//     const data = await getDocs(invoiceCollectionRef)
-//     const invoices = ( data.docs.map( (doc) => ({ id: doc.id, ...doc.data() }) ) as InvoiceInterface[] )
-//     return invoices
-
-// }
-
 interface InvoicePropInterface {
-  invoice: InvoiceInterface
+  id: string
 }
 
-function Invoice({ invoice }: InvoicePropInterface) {
+function Invoice({ id }: InvoicePropInterface) {
   return (
     <>
       <Head>
-        <title>Invoice | {invoice.id && `#${invoice.id.slice(0, 7)}`}</title>
+        <title>Invoice | {id && `#${id.slice(0, 5)}`}</title>
       </Head>
-
-      <InvoiceDetail data={invoice} />
+      <InvoiceDetail id={id} />
     </>
   )
 }
 
-// const invoiceData = [...Data()]
-
 export default Invoice
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const data = await getDocs(invoiceCollectionRef)
   const invoices = data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
 
@@ -51,18 +37,11 @@ export const getStaticPaths = async () => {
   }
 }
 
-export const getStaticProps = async (context: any) => {
-  const data = await getDocs(invoiceCollectionRef)
-  const invoices = data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+export const getStaticProps: GetStaticProps = async (context: any) => {
   const id = context.params.invoiceId
-  const invoiceData = invoices.find((invoice) => {
-    return (invoice.id === id)
-  })
-  
-
   return {
     props: {
-      invoice: invoiceData,
+      id,
     },
   }
 }

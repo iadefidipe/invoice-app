@@ -3,8 +3,8 @@ import { addCommas } from "utilities/Misc"
 import { fontStylesB } from "../shared/typography"
 
 interface InvoiceTableInterface {
-  items: [{ name: string; quantity: number; price: number; total: number; }]
-  total: number
+  items?: []
+  total: number | undefined
 }
 
 const Wrapper = styled.div`
@@ -122,7 +122,7 @@ const Total = styled.td`
 
 function InvoiceTable({ items, total }: InvoiceTableInterface) {
   return (
-    <Wrapper >
+    <Wrapper>
       <Table>
         <TableHead>
           <tr>
@@ -133,7 +133,7 @@ function InvoiceTable({ items, total }: InvoiceTableInterface) {
           </tr>
         </TableHead>
         <TableBody>
-          {items.map((item:{}) => {
+          {items?.map((item: any) => {
             return (
               <tr key={item.name}>
                 <ItemName>{item.name}</ItemName>

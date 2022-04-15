@@ -15,8 +15,8 @@ import Image from 'next/image'
 
 
 interface InvoiceItemInterface{
-	id: string
-	paymentDue: string
+	id?: string
+	paymentDue: Date
 	clientName: string
 	total: number
 	status: string
