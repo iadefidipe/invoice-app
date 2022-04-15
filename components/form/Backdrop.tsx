@@ -28,7 +28,7 @@ const animation = {
 }
 
 interface BackdropPropInterface {
-  edit: boolean
+  edit: boolean | undefined
 }
 
 export default function Backdrop({ edit }:BackdropPropInterface ) {

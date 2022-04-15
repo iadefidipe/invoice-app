@@ -50,19 +50,23 @@ const animation = {
   },
 }
 
-export default function Form({ children }) {
+interface FormPropInterface {
+  children: React.ReactNode
+  edit?: boolean
+}
+
+export default function Form({ children, edit }: FormPropInterface) {
   return (
     <>
-      <Backdrop>
-        <Wrapper
-          variants={animation}
-          initial='hidden'
-          animate='visible'
-          exit='hidden'
-        >
-          <StyledForm>{children}</StyledForm>
-        </Wrapper>
-      </Backdrop>
+      <Backdrop edit={edit} />
+      <Wrapper
+        variants={animation}
+        initial='hidden'
+        animate='visible'
+        exit='hidden'
+      >
+        <StyledForm>{children}</StyledForm>
+      </Wrapper>
     </>
   )
 }
