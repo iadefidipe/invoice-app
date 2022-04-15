@@ -49,7 +49,7 @@ export const StyleField = styled.input<InputStyleInterface>`
   color: ${(props) => props.theme.color.text.heading};
   font-weight: bold;
   transition: color 0.3s, border 0.3s, background 0.3s;
-  /* ${fontStylesA} */
+
   ::placeholder {
     color: ${(props) => props.theme.color.text.placeholder};
     transition: color 0.3s;
