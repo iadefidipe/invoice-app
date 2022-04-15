@@ -2,7 +2,6 @@ import * as Yup from "yup"
 import { SchemaOf } from "yup"
 
 export interface FormDataInterface {
-  id?: string 
   senderAddress: {
     street: string
     city: string
@@ -18,7 +17,32 @@ export interface FormDataInterface {
     country: string
   }
   createdAt: Date
-  paymentTerms: string
+  paymentTerms: number
+  description: string
+  status: string
+  items: []
+  total: number
+  paymentDue: Date
+}
+
+export interface InvoiceInterface {
+  id: string
+  senderAddress: {
+    street: string
+    city: string
+    postCode: string
+    country: string
+  }
+  clientName: string
+  clientEmail: string
+  clientAddress: {
+    street: string
+    city: string
+    postCode: string
+    country: string
+  }
+  createdAt: Date
+  paymentTerms: number
   description: string
   status: string
   items: []
@@ -41,13 +65,12 @@ export const initialValues: FormDataInterface = {
     country: "",
   },
   createdAt: new Date(),
-  paymentTerms: "30",
+  paymentTerms: 30,
   description: "",
   status: "pending",
   items: [],
   total: 0,
-  paymentDue: new Date()
-
+  paymentDue: new Date(),
 }
 
 export const validationSchema = Yup.object().shape({
