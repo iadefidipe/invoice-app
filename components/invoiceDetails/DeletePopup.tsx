@@ -13,6 +13,8 @@ import Store from "store"
 
 import { invoiceCollectionRef } from "pages"
 import { useRouter } from "next/router"
+import { getInvoice } from "utilities/Misc"
+import { InvoiceInterface } from "data/form"
 
 const Backdrop = styled(motion.div)`
   position: fixed;
@@ -89,24 +91,21 @@ const popupAnimation = {
 }
 
 interface DeletePopupInterface {
-  id: string
+  invoice: InvoiceInterface
 }
 
-export default function DeletePopup({ id }: DeletePopupInterface) {
+export default function DeletePopup({ invoice }: DeletePopupInterface) {
   const router = useRouter()
   const dispatch = useAppDispatch()
   const popupOpen = useAppSelector((state) => state.popUpOpen.value)
 
   //Delete Invovoice based on ID
-  const deleteInvoice = async (id: string) => {
+  const deleteInvoice = async (id: any) => {
     const invoiceDoc = doc(db, "invoices", id)
     await deleteDoc(invoiceDoc)
     const data = await getDocs(invoiceCollectionRef)
-    Store.set(
-      "invoices",
-      data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-    )
-    dispatch(updateInvoice(Store.get("invoices")))
+    const invoices: InvoiceInterface[] = getInvoice(data)
+    dispatch(updateInvoice(invoices))
     dispatch(popUp(false))
 
     //go back to homempage
@@ -126,14 +125,14 @@ export default function DeletePopup({ id }: DeletePopupInterface) {
             <Popup variants={popupAnimation}>
               <Heading>Confirm Deletion</Heading>
               <Message>
-                Are you sure you want to delete invoice {id}? This action cannot
-                be undone.
+                Are you sure you want to delete invoice {invoice.id}? This
+                action cannot be undone.
               </Message>
               <Buttons>
                 <Button secondary onClick={() => dispatch(popUp(false))}>
                   Cancel
                 </Button>
-                <Button alert onClick={() => deleteInvoice(id)}>
+                <Button alert onClick={() => deleteInvoice(invoice.id)}>
                   Delete
                 </Button>
               </Buttons>
