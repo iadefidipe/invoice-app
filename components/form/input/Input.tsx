@@ -5,10 +5,9 @@ import { StyleField, InputWrapper, Label } from "./input.style"
 interface InputInterface{
   label: String
   name: any
-  hideLabels: boolean
+  hideLabels?: boolean
   disabled?: boolean
   faded?: boolean
-  rest: {}
 }
 
 function Input({ label, name, hideLabels, ...rest }:InputInterface) : JSX.Element{

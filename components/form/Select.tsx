@@ -1,4 +1,4 @@
-import { Field, useField } from "formik"
+import { useField } from "formik"
 import React from "react"
 import styled from "styled-components"
 import { fontStylesA } from "../shared/typography"
@@ -43,13 +43,13 @@ const StyledSelect = styled.select`
     border: 1px solid #9277ff;
   }
 `
-interface SelectInterfce {
+interface SelectInterface {
   label: string
   name: string
-  options: [{ name: string; value: number }]
+  options: { name: string; value: number }[]
 }
 
-function Select({ label, name, options, ...rest }: SelectInterfce) {
+function Select({ label, name, options, ...rest }: SelectInterface) {
   const [field] = useField(name)
   return (
     <SelectDrop>
