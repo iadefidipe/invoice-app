@@ -2,7 +2,7 @@ export function addCommas(num: number) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
 
-export function invoicesMessage(num, filter) {
+export function invoicesMessage(num:number, filter:string) {
   if (num === 0 && !filter) {
     return "There are no invoices."
   } else if (num === 0 && filter) {
