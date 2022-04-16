@@ -1,11 +1,10 @@
-import {useEffect} from "react"
+import { useEffect } from "react"
 import { useFormikContext } from "formik"
 import styled from "styled-components"
 
 import Input from "./input/Input"
 import { DeleteButton } from "../shared/Buttons"
 import { InvoiceInterface } from "types/types"
-
 
 const Wrapper = styled.div`
   display: grid;
@@ -46,11 +45,11 @@ const Wrapper = styled.div`
 `
 
 interface ItemInterface {
-  index:number
-  helpers:any
+  index: number
+  helpers: any
 }
 
-function item({ index, helpers }:ItemInterface) {
+function Item({ index, helpers }: ItemInterface) {
   const { values, setFieldValue } = useFormikContext<InvoiceInterface>()
 
   useEffect(() => {
@@ -92,4 +91,4 @@ function item({ index, helpers }:ItemInterface) {
   )
 }
 
-export default item
+export default Item
