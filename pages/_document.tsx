@@ -49,10 +49,10 @@ export default class MyDocument extends Document {
           />
           <meta
             property='og:image'
-            content='https://audiophilic.vercel.app/audiophile-og.png'
+            content='https://invoice-app-crud.vercel.app/invoice-app-pg.png'
             key='ogimage'
           />
-          <meta property='og:site_name' content='audiophile' key='ogsitename' />
+          <meta property='og:site_name' content='invoice-app' key='ogsitename' />
           <meta property='og:image:width' content='1200' />
           <meta property='og:image:height' content='630' />
           <link rel='apple-touch-icon' href='/favicon.png' />
