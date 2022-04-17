@@ -31,15 +31,12 @@ export default function InvoicesList() {
   const filters = useAppSelector((state) => state.filter.value)
   const filteredInvoice = useAppSelector((state) => state.filteredInvoice.value)
 
-  const [renderInvoices, setRenderInvoice] =
-    useState<InvoiceInterface[]>(invoices)
-
   useEffect(() => {
     const getInvoice = () => {
       const checkedFilter = filters.filter((filter) => filter.checked === true)
 
       let filteredInvoice = invoices.filter(
-        (invoice) => invoice.status === checkedFilter[0].value
+        (invoice) => invoice.status === checkedFilter[0]?.value
       )
       if (checkedFilter[0]) {
         return filteredInvoice
