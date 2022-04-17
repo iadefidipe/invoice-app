@@ -10,7 +10,7 @@ const firebaseConfig = {
   storageBucket: "fir-invoice-bd549.appspot.com",
   messagingSenderId: "410418200082",
   appId: "1:410418200082:web:8e7f5a89a25d94ef0922cb",
-  measurementId: "G-6X6KVWRNN2",
+  measurementId: "G-6X6KVWRNN2"
 }
 
 let App
