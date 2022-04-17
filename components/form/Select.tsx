@@ -50,12 +50,12 @@ interface SelectInterface {
 }
 
 function Select({ label, name, options, ...rest }: SelectInterface) {
-  const [field] = useField(name)
+  const [field, meta] = useField(name)
   return (
     <SelectDrop>
       <Label htmlFor={name}>{label}</Label>
       <SelectWrapper>
-        <StyledSelect {...field}>
+        <StyledSelect aria-label='State' {...field}>
           {options?.map((option) => {
             return (
               <option key={option.value} value={option.value}>

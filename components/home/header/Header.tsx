@@ -10,15 +10,24 @@ import {
 } from "./Header.style"
 import { toggleForm } from "../../../redux/features/openForm"
 import { toggleExit } from "../../../redux/features/open"
-import { useAppDispatch, useAppSelector } from "../../../redux/types/reduxTypes"
+import { useAppDispatch, useAppSelector } from "redux/types/reduxTypes"
+import { invoicesMessage } from "utilities/Misc"
 
 function Header(): JSX.Element {
   const dispatch = useAppDispatch()
+  const filteredInvoice = useAppSelector((state) => state.filteredInvoice.value)
+  const filters = useAppSelector((state) => state.filter.value)
+  const checkedFilter = filters.filter((filter) => filter.checked === true)
+  const message = invoicesMessage(
+    filteredInvoice.length,
+    checkedFilter[0]?.value
+  )
+
   return (
     <HeaderWrapper>
       <TextWrapper>
         <Heading>Invoices</Heading>
-        <SubHeading>No Invoices</SubHeading>
+        <SubHeading>{message}</SubHeading>
       </TextWrapper>
       <InnerWrapper>
         <Filter />

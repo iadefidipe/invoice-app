@@ -33,7 +33,7 @@ export const invoiceCollectionRef = collection(db, "invoices")
 
 const Home: NextPage = (): JSX.Element => {
   const exit = useAppSelector((state) => state.exit.value)
-  // const invoices = useAppSelector((state) => state.invoice.value)
+  const invoices = useAppSelector((state) => state.invoice.value)
 
   const dispatch = useAppDispatch()
 
@@ -51,7 +51,7 @@ const Home: NextPage = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Invoices - Frontend Mentor</title>
+        <title>Invoices ({invoices.length}) | Frontend Mentor</title>
       </Head>
       <Wrapper>
         <InnerWrapper>
