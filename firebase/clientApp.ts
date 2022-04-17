@@ -1,22 +1,22 @@
-import { getApps, initializeApp } from "firebase/app" //initialize app
-import "firebase/auth"
-import { getFirestore } from "firebase/firestore"
+import { getApps, initializeApp } from 'firebase/app' //initialize app
+import 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
 
 //import credentials from env file
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+	apiKey: "AIzaSyCioKvmucLIKdFwHe3Eq6zZW9iEbRBU5WE",
+	authDomain: "fir-invoice-bd549.firebaseapp.com",
+	projectId: "fir-invoice-bd549",
+	storageBucket: "fir-invoice-bd549.appspot.com",
+	messagingSenderId: "410418200082",
+	appId: "1:410418200082:web:8e7f5a89a25d94ef0922cb",
+	measurementId: "G-6X6KVWRNN2"
 }
 
 let App
 
 if (!getApps.length) {
-  App = initializeApp(firebaseConfig)
+	App = initializeApp(firebaseConfig)
 }
 
 export const db = getFirestore(App)
