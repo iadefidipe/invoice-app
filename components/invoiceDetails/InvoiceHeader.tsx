@@ -3,8 +3,10 @@ import InvoiceStatus from "components/shared/InvoiceStatus"
 import { fontStylesA, fontStylesB } from "components/shared/typography"
 import Buttons from "./Buttons"
 import { InvoiceInterface } from "data/form"
+import { Shadow } from "styles/HelperStyles"
 
 const Wrapper = styled.div`
+  ${Shadow}
   display: grid;
   background: ${(props) => props.theme.color.invoiceItem.bg};
   width: 100%;
@@ -14,8 +16,6 @@ const Wrapper = styled.div`
   @media only screen and (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
   }
-
-  border: 2px red solid;
 
   & > div:nth-of-type(2) {
     display: none;

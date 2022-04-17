@@ -14,7 +14,6 @@ const ButtonWrap = styled.div`
   display: flex;
   justify-content: end;
   gap: 0.5rem;
-  border: 2px green solid;
 `
 
 interface ButtonsPropInterface {

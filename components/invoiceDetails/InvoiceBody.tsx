@@ -8,11 +8,16 @@ import {
 import InvoiceTable from "./InvoiceTable"
 import { fontStylesA, fontStylesB } from "components/shared/typography"
 import { InvoiceInterface } from "data/form"
+import { Shadow } from "styles/HelperStyles"
 
 const Wrapper = styled.div`
+  ${Shadow}
   padding: 1rem 1.5rem;
   display: grid;
+  
+  background: ${(props) => props.theme.color.invoiceItem.bg};
   gap: 31px;
+  border-radius: 8px;
 `
 const InvoiceDescriptionWrap = styled.div`
   display: flex;

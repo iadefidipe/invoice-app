@@ -10,3 +10,7 @@ export const Span = styled.span`
 		display: none;
 	}
 `
+
+export const Shadow =css`
+	box-shadow: 0 8px 10px -10px rgba(72, 84, 159, 0.25);
+`

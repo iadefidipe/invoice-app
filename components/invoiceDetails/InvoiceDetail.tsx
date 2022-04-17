@@ -23,8 +23,11 @@ import { useEffect } from "react"
 const Wrapper = styled(InnerWrapper)`
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 2rem;
+`
+const Container = styled.div`
   width: 100%;
+  padding: 0 24px;
 `
 const BackLink = styled(Link)``
 
@@ -49,15 +52,17 @@ function InvoiceDetail({ id }: InvoiceDetailPropInterface) {
     <>
       <DeletePopup invoice={invoice} />
       <CreateEditForm invoice={invoice} />
-      <Wrapper>
-        <BackLink href={`/`} passHref={true}>
-          <LinkWrap>
-            <Image src={arrow} alt='' /> <LinkText>Go Back</LinkText>
-          </LinkWrap>
-        </BackLink>
-        <InvoiceHeader invoice={invoice} />
-        <InvoiceBody invoice={invoice} />
-      </Wrapper>
+      <Container>
+        <Wrapper>
+          <BackLink href={`/`} passHref={true}>
+            <LinkWrap>
+              <Image src={arrow} alt='' /> <LinkText>Go Back</LinkText>
+            </LinkWrap>
+          </BackLink>
+          <InvoiceHeader invoice={invoice} />
+          <InvoiceBody invoice={invoice} />
+        </Wrapper>
+      </Container>
       <InvoiceFooter invoice={invoice} />
     </>
   )

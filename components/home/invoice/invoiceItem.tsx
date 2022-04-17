@@ -37,7 +37,7 @@ function InvoiceItem({
         </Id>
         <PaymentDue>Due {dayjs(paymentDue).format("DD MMM YYYY")}</PaymentDue>
         <ClientName>{clientName}</ClientName>
-        <Total as='div'>{total}</Total>
+        <Total as='div'>£{total}</Total>
         <StyledInvoiceStatus status={status} />
         <Arrow>
           <Image src={arrow} alt='' />

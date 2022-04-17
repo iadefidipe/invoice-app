@@ -15,9 +15,11 @@ import { updateInvoice } from "redux/features/Invoices"
 import Store from "store"
 import { InvoiceInterface } from "../data/form"
 import { getInvoice } from "utilities/Misc"
+import { Shadow } from "styles/HelperStyles"
 
 // component style
-const Wrapper = styled.main`
+const Wrapper = styled.div`
+  ${Shadow}
   width: 100%;
   padding: 0 24px;
 `
