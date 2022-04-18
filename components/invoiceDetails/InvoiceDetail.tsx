@@ -24,6 +24,7 @@ const Wrapper = styled(InnerWrapper)`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  
 `
 const Container = styled.div`
   width: 100%;
