@@ -52,6 +52,11 @@ const Home: NextPage = (): JSX.Element => {
     <>
       <Head>
         <title>Invoices ({invoices.length}) | Frontend Mentor</title>
+
+        <meta
+          name='description'
+          content='A CRUD Invoice application to easily track your business/personal transactions'
+        />
       </Head>
       <Wrapper>
         <InnerWrapper>
