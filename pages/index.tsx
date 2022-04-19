@@ -42,7 +42,6 @@ const Home: NextPage = (): JSX.Element => {
     const getData = async () => {
       const data = await getDocs(invoiceCollectionRef)
       const invoices: InvoiceInterface[] = getInvoice(data)
-      // console.log(invoices)
       dispatch(updateInvoice(invoices))
     }
     getData()

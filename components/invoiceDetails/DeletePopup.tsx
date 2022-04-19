@@ -125,7 +125,7 @@ export default function DeletePopup({ invoice }: DeletePopupInterface) {
             <Popup variants={popupAnimation}>
               <Heading>Confirm Deletion</Heading>
               <Message>
-                Are you sure you want to delete invoice {invoice.id}? This
+                Are you sure you want to delete invoice {invoice?.id}? This
                 action cannot be undone.
               </Message>
               <Buttons>

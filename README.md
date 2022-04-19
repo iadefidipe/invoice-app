@@ -1,34 +1,104 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend Mentor - Invoice app solution
 
-## Getting Started
+This is a solution to the [Invoice app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/invoice-app-i7KaLTQjl). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-First, run the development server:
+## Table of contents
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- [Frontend Mentor - Invoice app solution](#frontend-mentor---invoice-app-solution)
+  - [Table of contents](#table-of-contents)
+  - [Overview](#overview)
+    - [Intro](#intro)
+    - [The challenge](#the-challenge)
+    - [Screenshot](#screenshot)
+    - [Links](#links)
+  - [My process](#my-process)
+    - [Built with](#built-with)
+    - [What I learned](#what-i-learned)
+    - [Continued development](#continued-development)
+  - [Author](#author)
+  - [Acknowledgments](#acknowledgments)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Note: Delete this note and update the table of contents based on what sections you keep.**
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Overview
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Intro
+ Hi, there!
+ 
+ Thank you for checking out my solution to the  [invoice app challenge](https://invoice-app-crud.vercel.app/) from Frontend Mentor. grinning
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Feel free to look around and explore! 
+share comments here [Linkedin Post](https://www.linkedin.com/posts/iadefidipe_invoices-0-frontend-mentor-activity-6921833013764890625-sK3A?utm_source=linkedin_share&utm_medium=member_desktop_web)
 
-## Learn More
+### The challenge
 
-To learn more about Next.js, take a look at the following resources:
+Users should be able to:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- View the optimal layout for the app depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Create, read, update, and delete invoices
+- Receive form validations when trying to create/edit an invoice
+- Save draft invoices, and mark pending invoices as paid
+- Filter invoices by status (draft/pending/paid)
+- Toggle light and dark mode
+- **Bonus**: Keep track of any changes, even after refreshing the browser (`localStorage` could be used for this if you're not building out a full-stack app)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Screenshot
 
-## Deploy on Vercel
+![](./public/invoice-app-pg.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Links
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Solution URL: [Git Repo Link](https://github.com/iadefidipe/invoice-app)
+- Live Site URL: [Live site URL ](https://invoice-app-crud.vercel.app/)
+
+## My process
+
+### Built with
+
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- CSS Grid
+- Mobile-first workflow
+- [React](https://reactjs.org/) - JS library
+- [Next.js](https://nextjs.org/) - React framework
+- [Styled Components](https://styled-components.com/) - For styles
+- [Typescript](https://www.typescriptlang.org/)- Typescript Documentation
+- [Redux Toolkit](https://redux-toolkit.js.org/)- Redux Library
+- [Firebase](https://firebase.google.com/)- Firebase Firestore Database
+- [Formik](https://formik.org/docs/overview)- Formik Form management Library
+- [Framer Motion](https://www.framer.com/docs/) - Framer Motion Animation Library
+
+
+### What I learned
+
+This is my first time, using Typescript and most of the libraries I used on this Project, like formik, Firebase, Redux. So it was a challenging journey, with the way I scalled the app.
+
+
+
+### Continued development
+
+- There will be another version of this app. Where I will be developing the backend myself with NodeJs and Express Js, Because Firestore might shut down because I'm using a free plan.
+- Implement features like Authentication and Authorization.
+
+<!-- ### Useful resources
+
+- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
+- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept. -->
+
+
+
+## Author
+
+- Website - [Portfolio Website](https://iadefidipe.netlify.app/)
+- Frontend Mentor - [@iadefidipe](https://www.frontendmentor.io/profile/iadefidipe)
+- Twitter - [@iadecodes](https://www.twitter.com/iadecodes)
+
+
+
+## Acknowledgments
+
+This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
+
+[Frontend Mentor](https://www.frontendmentor.io/)
