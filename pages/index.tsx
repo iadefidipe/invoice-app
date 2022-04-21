@@ -56,6 +56,8 @@ const Home: NextPage = (): JSX.Element => {
           name='description'
           content='A CRUD Invoice application to easily track your business/personal transactions'
         />
+        <link rel='apple-touch-icon' href='/favicon.png' />
+        <link rel='manifest' href='%PUBLIC_URL%/manifest.json' />
       </Head>
       <Wrapper>
         <InnerWrapper>

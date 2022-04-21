@@ -59,8 +59,7 @@ export default class MyDocument extends Document {
           />
           <meta property='og:image:width' content='1200' />
           <meta property='og:image:height' content='630' />
-          <link rel='apple-touch-icon' href='/favicon.png' />
-          <link rel='manifest' href='%PUBLIC_URL%/manifest.json' />
+          
 
           <link rel='preconnect' href='https://fonts.gstatic.com' />
           <link
