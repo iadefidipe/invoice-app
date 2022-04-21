@@ -11,19 +11,17 @@ const extendedstyle = css`
 export const SidebarWrapper = styled.aside`
   ${extendedstyle}
   background-color: ${({ theme }) => theme.color.sidebar.bg};
-  position:fixed;
+  position: fixed;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
   @media (max-width: 900px) {
     width: 100%;
-
   }
-  
+
   @media (min-width: 900px) {
-    position: sticky;
-  
-  
+    width: initial;
+    height: 100vh;
     border-radius: 0 20px 20px 0;
   }
 `
