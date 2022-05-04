@@ -1,4 +1,5 @@
-import type { NextPage } from "next"
+import type { NextPage, GetServerSideProps } from "next"
+
 import Head from "next/head"
 import Image from "next/image"
 import Header from "components/home/header/Header"
@@ -31,26 +32,27 @@ export const InnerWrapper = styled.main`
 
 export const invoiceCollectionRef = collection(db, "invoices")
 
-const Home: NextPage = (): JSX.Element => {
+interface HomeInterface {
+  invoices: InvoiceInterface[]
+}
+
+const Home = ({ invoices }:HomeInterface) => {
   const exit = useAppSelector((state) => state.exit.value)
-  const invoices = useAppSelector((state) => state.invoice.value)
+  const invoice = useAppSelector((state) => state.invoice.value)
 
   const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    //get data from firebase once app loads
-    const getData = async () => {
-      const data = await getDocs(invoiceCollectionRef)
-      const invoices: InvoiceInterface[] = getInvoice(data)
-      dispatch(updateInvoice(invoices))
-    }
-    getData()
-  })
+  dispatch(updateInvoice(invoices))
+
+  // useEffect(() => {
+  //   //get data from firebase once app loads
+
+  // })
 
   return (
     <>
       <Head>
-        <title>Invoices ({invoices.length}) | Frontend Mentor</title>
+        <title>Invoices ({invoice.length}) | Frontend Mentor</title>
 
         <meta
           name='description'
@@ -69,6 +71,16 @@ const Home: NextPage = (): JSX.Element => {
       </Wrapper>
     </>
   )
+}
+
+// this should be used instead of fetching server side data with useEffect
+export const getServerSideProps: GetServerSideProps = async () => {
+  const data = await getDocs(invoiceCollectionRef)
+  const invoices: InvoiceInterface[] = getInvoice(data)
+
+  return {
+    props: { invoices },
+  }
 }
 
 export default Home
