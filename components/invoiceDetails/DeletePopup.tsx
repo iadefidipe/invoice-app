@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import toast from "react-hot-toast"
 import ScrollLock from "react-scrolllock"
 import { motion, AnimatePresence } from "framer-motion"
 import Button from "../shared/Buttons"
@@ -110,6 +111,7 @@ export default function DeletePopup({ invoice }: DeletePopupInterface) {
 
     //go back to homempage
     router.push("/")
+    toast.success(`Successfully Deleted Invoice ${id}`)
   }
 
   return (

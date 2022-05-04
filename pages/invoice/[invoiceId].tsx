@@ -28,6 +28,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = invoices.map((invoice) => {
     return {
       params: { invoiceId: invoice.id },
+      fallback: 'blocking'
     }
   })
 
