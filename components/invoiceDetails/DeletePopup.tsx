@@ -104,14 +104,17 @@ export default function DeletePopup({ invoice }: DeletePopupInterface) {
   const deleteInvoice = async (id: any) => {
     const invoiceDoc = doc(db, "invoices", id)
     await deleteDoc(invoiceDoc)
+    toast.loading(`Deleting Invoice ${id}`)
+
     const data = await getDocs(invoiceCollectionRef)
     const invoices: InvoiceInterface[] = getInvoice(data)
     dispatch(updateInvoice(invoices))
+    toast.dismiss()
+    toast.success(`Successfully Deleted Invoice ${id}`)
     dispatch(popUp(false))
 
     //go back to homempage
     router.push("/")
-    toast.success(`Successfully Deleted Invoice ${id}`)
   }
 
   return (

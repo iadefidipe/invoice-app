@@ -36,10 +36,11 @@ function CreateEditForm({ invoice }: CreateEditFormInterface) {
 
     const invoiceDoc = await doc(db, "invoices", invoice.id)
     await updateDoc(invoiceDoc, newValue)
+    toast.loading(`Editing Invoice ${invoice.id}`)
     const data = await getDocs(invoiceCollectionRef)
     const invoices: InvoiceInterface[] = getInvoice(data)
-   
     dispatch(updateInvoice(invoices))
+    toast.dismiss()
     toast.success(`Successfully edited Invoice ${invoice.id}`)
     onSubmitProps.resetForm()
     dispatch(toggleEditForm(false))
@@ -69,7 +70,7 @@ function CreateEditForm({ invoice }: CreateEditFormInterface) {
             <Form edit>
               <Heading>
                 Edit <span>#</span>
-                {invoice.id}
+                {invoice.id.toUpperCase()}
               </Heading>
               <Fields />
 

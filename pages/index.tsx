@@ -36,7 +36,7 @@ interface HomeInterface {
   invoices: InvoiceInterface[]
 }
 
-const Home = ({ invoices }:HomeInterface) => {
+const Home = ({ invoices }: HomeInterface) => {
   const exit = useAppSelector((state) => state.exit.value)
   const invoice = useAppSelector((state) => state.invoice.value)
 
@@ -44,15 +44,16 @@ const Home = ({ invoices }:HomeInterface) => {
 
   dispatch(updateInvoice(invoices))
 
-  // useEffect(() => {
-  //   //get data from firebase once app loads
-
-  // })
+  useEffect(() => {
+    //get data from firebase on form submission
+    
+    dispatch(updateInvoice(invoice))
+  }, [invoice, dispatch])
 
   return (
     <>
       <Head>
-        <title>Invoices ({invoice.length}) | Frontend Mentor</title>
+        <title>Invoices ({invoices.length}) | Frontend Mentor</title>
 
         <meta
           name='description'
@@ -73,11 +74,9 @@ const Home = ({ invoices }:HomeInterface) => {
   )
 }
 
-// this should be used instead of fetching server side data with useEffect
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await getDocs(invoiceCollectionRef)
   const invoices: InvoiceInterface[] = getInvoice(data)
-
   return {
     props: { invoices },
   }

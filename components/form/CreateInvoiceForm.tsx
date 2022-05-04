@@ -35,6 +35,7 @@ function CreateInvoiceForm() {
       const data = await getDocs(invoiceCollectionRef)
       const invoices: InvoiceInterface[] = getInvoice(data)
       dispatch(updateInvoice(invoices))
+    toast.dismiss()
       toast.success(`Successfully added New Invoice`)
 
       onSubmitProps.resetForm()
@@ -54,6 +55,7 @@ function CreateInvoiceForm() {
     const data = await getDocs(invoiceCollectionRef)
     const invoices: InvoiceInterface[] = getInvoice(data)
     dispatch(updateInvoice(invoices))
+    toast.dismiss()
     toast.success(`Successfully added Draft Invoice`)
 
     dispatch(toggleForm(false))

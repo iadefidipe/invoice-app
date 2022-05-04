@@ -33,7 +33,7 @@ function InvoiceItem({
       <StyledLink variants={animation}>
         <Id>
           <span>#</span>
-          {id.slice(0, 5)}
+          {id.slice(0, 5).toUpperCase()}
         </Id>
         <PaymentDue>Due {dayjs(paymentDue).format("DD MMM YYYY")}</PaymentDue>
         <ClientName>{clientName}</ClientName>

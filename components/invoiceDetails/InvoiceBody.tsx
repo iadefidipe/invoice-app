@@ -99,7 +99,7 @@ function InvoiceBody({ invoice }: InvoiceDetailPropInterface) {
         <Description>
           <Id>
             <span>#</span>
-            {invoice?.id?.slice(0, 6)}
+            {invoice?.id?.slice(0, 6).toUpperCase()}
           </Id>
           <DescriptionText>{invoice?.description}</DescriptionText>
         </Description>
