@@ -18,8 +18,7 @@ const Button = styled.button`
     outline: 2px dotted #7e88c3;
   }
 `
-const Wrapper = styled.div`
-`
+const Wrapper = styled.div``
 const Image = styled(image)``
 
 // functions
@@ -36,8 +35,10 @@ function ThemeToggle() {
   }
 
   useEffect(() => {
-    // themeToggle()
-  })
+    if (Store.get("theme") === undefined) {
+      Store.set("theme", theme === "dark" )
+    }
+  }, [])
   return (
     <Button
       onClick={() => {

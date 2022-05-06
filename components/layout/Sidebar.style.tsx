@@ -21,7 +21,7 @@ export const SidebarWrapper = styled.aside`
 
   @media (min-width: 900px) {
     width: initial;
-    height: 100vh;
+    height: 100vh; 
     border-radius: 0 20px 20px 0;
   }
 `

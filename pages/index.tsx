@@ -45,10 +45,15 @@ const Home = ({ invoices }: HomeInterface) => {
   dispatch(updateInvoice(invoices))
 
   useEffect(() => {
-    //get data from firebase on form submission
-    
-    dispatch(updateInvoice(invoice))
-  }, [invoice, dispatch])
+
+    //get data from firebase once app loads
+    const getData = async () => {
+      const data = await getDocs(invoiceCollectionRef)
+      const invoices: InvoiceInterface[] = getInvoice(data)
+      dispatch(updateInvoice(invoices))
+    }
+    getData()
+  },[])
 
   return (
     <>
@@ -60,7 +65,7 @@ const Home = ({ invoices }: HomeInterface) => {
           content='A CRUD Invoice application to easily track your business/personal transactions'
         />
         <link rel='apple-touch-icon' href='/favicon.png' />
-        <link rel='manifest' href='%PUBLIC_URL%/manifest.json' />
+        <link rel='manifest' href='/manifest.json' />
       </Head>
       <Wrapper>
         <InnerWrapper>
