@@ -41,11 +41,8 @@ function CreateEditForm({ invoice }: CreateEditFormInterface) {
     )
     dispatch(updateInvoice(Store.get("invoices")))
 
-    // // console.log("submit", value)
     onSubmitProps.resetForm()
     dispatch(toggleEditForm(false))
-
-    // // console.log("submited form", value)
   }
 
   return (

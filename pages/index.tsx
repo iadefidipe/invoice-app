@@ -45,7 +45,7 @@ const Home: NextPage = (): JSX.Element => {
       dispatch(updateInvoice(invoices))
     }
     getData()
-  })
+  },[])
 
   return (
     <>
@@ -57,7 +57,7 @@ const Home: NextPage = (): JSX.Element => {
           content='A CRUD Invoice application to easily track your business/personal transactions'
         />
         <link rel='apple-touch-icon' href='/favicon.png' />
-        <link rel='manifest' href='%PUBLIC_URL%/manifest.json' />
+        <link rel='manifest' href='/manifest.json' />
       </Head>
       <Wrapper>
         <InnerWrapper>

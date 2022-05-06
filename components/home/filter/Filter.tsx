@@ -16,7 +16,7 @@ function Filter() {
 				setOpen(false)
 			}
 		})
-	})
+	},[])
 
 	return (
 		<FilterWrapper ref={dropdown}>

@@ -32,8 +32,8 @@ function Layout({ children }: layoutType) {
       Store.set("theme", "light")
     }
     dispatch(toggleTheme(Store.get("theme")))
-  })
-
+  },[])
+ 
   return (
     <ThemeProvider theme={theme === "light" ? light : dark}>
       <GlobalStyles />
