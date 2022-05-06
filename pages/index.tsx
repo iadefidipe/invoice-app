@@ -10,14 +10,13 @@ import { db } from "../firebase/clientApp"
 import { useAppDispatch, useAppSelector } from "../redux/types/reduxTypes"
 import { collection } from "firebase/firestore"
 import InvoicesList from "components/home/invoice/invoiceList"
-import {  getDocs } from "firebase/firestore"
+import { getDocs } from "firebase/firestore"
 import Main from "../components/home/Main"
 import { updateInvoice } from "redux/features/Invoices"
 import Store from "store"
 import { InvoiceInterface } from "../data/form"
 import { getInvoice, getFilteredInvoice } from "utilities/Misc"
 import { Shadow } from "styles/HelperStyles"
-
 
 // component style
 const Wrapper = styled.div`
@@ -33,28 +32,15 @@ export const InnerWrapper = styled.main`
 
 export const invoiceCollectionRef = collection(db, "invoices")
 
-// interface HomeInterface {
-//   invoices: InvoiceInterface[]
-// }
+interface HomeInterface {
+  invoices: InvoiceInterface[]
+}
 
-const Home = () => {
+const Home = ({ invoices }: HomeInterface) => {
   const dispatch = useAppDispatch()
-
-  // dispatch(updateInvoice(invoices))
+  dispatch(updateInvoice(invoices))
   const exit = useAppSelector((state) => state.exit.value)
   const invoice = useAppSelector((state) => state.invoice.value)
-  
-
-  useEffect(() => {
-    // get data from firebase once app loads
-    const getData = async () => {
-      const data = await getDocs(invoiceCollectionRef)
-      const invoices: InvoiceInterface[] = getInvoice(data)
-      dispatch(updateInvoice(invoices))
-    }
-    getData()
-
-  }, [])
 
   return (
     <>
@@ -79,12 +65,12 @@ const Home = () => {
   )
 }
 
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   const data = await getDocs(invoiceCollectionRef)
-//   const invoices: InvoiceInterface[] = getInvoice(data)
-//   return {
-//     props: { invoices },
-//   }
-// }
+export const getServerSideProps: GetServerSideProps = async () => {
+  const data = await getDocs(invoiceCollectionRef)
+  const invoices: InvoiceInterface[] = getInvoice(data)
+  return {
+    props: { invoices },
+  }
+}
 
 export default Home

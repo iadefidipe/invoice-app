@@ -1,5 +1,6 @@
 import { Formik } from "formik"
 import toast from "react-hot-toast"
+import { useRouter } from "next/router"
 import { AnimatePresence } from "framer-motion"
 import { initialValues, validationSchema } from "data/form"
 import Button from "../shared/Buttons"
@@ -21,6 +22,8 @@ import Form from "./Form"
 import { getInvoice } from "utilities/Misc"
 
 function CreateInvoiceForm() {
+  const router = useRouter()
+
   const dispatch: any = useAppDispatch()
   // const invoice = useAppSelector((state) => state.invoice.value)
   const open = useAppSelector((state) => state.openForm.value)
@@ -35,12 +38,14 @@ function CreateInvoiceForm() {
       const data = await getDocs(invoiceCollectionRef)
       const invoices: InvoiceInterface[] = getInvoice(data)
       dispatch(updateInvoice(invoices))
-    toast.dismiss()
+      toast.dismiss()
       toast.success(`Successfully added New Invoice`)
 
       onSubmitProps.resetForm()
       dispatch(toggleForm(false))
       dispatch(toggleExit(true))
+      //go back to homempage
+      router.push("/")
     } catch (err) {
       toast.error("This is an error!")
     }
@@ -60,6 +65,7 @@ function CreateInvoiceForm() {
 
     dispatch(toggleForm(false))
     dispatch(toggleExit(true))
+    router.push("/")
   }
 
   return (
