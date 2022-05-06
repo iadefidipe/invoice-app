@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { number, string } from "yup"
 
-export interface filterState {
+export interface FilterInterface {
   id: number
   value: string
   checked: boolean
 }
 
 // manage filter toogle state
-const initialFilterState: filterState[] = [
+const initialFilterState: FilterInterface[] = [
   {
     id: 0,
     value: "paid",
@@ -29,7 +29,7 @@ export const filterSlice = createSlice({
   name: "filter",
   initialState: { value: initialFilterState },
   reducers: {
-    toggleFilter: (state, action: PayloadAction<filterState[]>) => {
+    toggleFilter: (state, action: PayloadAction<FilterInterface[]>) => {
       state.value = action.payload
     },
   },

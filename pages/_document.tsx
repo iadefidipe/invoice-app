@@ -59,8 +59,12 @@ export default class MyDocument extends Document {
           />
           <meta property='og:image:width' content='1200' />
           <meta property='og:image:height' content='630' />
-          
 
+          <link
+            rel='manifest'
+            href='/manifest.json'
+            // crossOrigin='use-credentials'
+          />
           <link rel='preconnect' href='https://fonts.gstatic.com' />
           <link
             href='https://fonts.googleapis.com/css2?family=Spartan:wght@400;700&display=swap'

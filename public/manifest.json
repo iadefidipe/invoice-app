@@ -1,0 +1,9 @@
+{
+  "name": "INVOICE CRUD APPLICATION",
+  "short_name": "Invoice-tracking App",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#888eb0",
+  "theme_color": "#888eb0",
+  "orientation": "portrait-primary" 
+}

@@ -1,8 +1,11 @@
+import { FilterInterface } from "redux/features/filter"
+import { InvoiceInterface } from "../data/form"
+
 export function addCommas(num: number) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
 
-export function invoicesMessage(num:number, filter:string) {
+export function invoicesMessage(num: number, filter: string) {
   if (num === 0 && !filter) {
     return "There are no invoices."
   } else if (num === 0 && filter) {
@@ -23,4 +26,24 @@ export const getInvoice = (data: any) => {
     id: doc.id,
     ...doc.data(),
   }))
+}
+
+interface getFilteredInvoiceInterface {
+  filters: FilterInterface[]
+  invoices: InvoiceInterface[]
+}
+export const getFilteredInvoice = (
+  filters: FilterInterface[],
+  invoices: InvoiceInterface[]
+) => {
+  const checkedFilter = filters.filter((filter) => filter.checked === true)
+
+  let filteredInvoice = invoices.filter(
+    (invoice) => invoice.status === checkedFilter[0]?.value
+  )
+  if (checkedFilter[0]) {
+    return filteredInvoice
+  } else {
+    return invoices
+  }
 }

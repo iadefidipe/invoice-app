@@ -2,6 +2,7 @@ import styled from "styled-components"
 import InvoiceItem from "./invoiceItem"
 import { motion } from "framer-motion"
 import { useSession } from "next-auth/react"
+import { getFilteredInvoice } from "utilities/Misc"
 import { useAppSelector, useAppDispatch } from "redux/types/reduxTypes"
 import { useEffect, useState } from "react"
 import { InvoiceInterface } from "data/form"
@@ -32,23 +33,9 @@ export default function InvoicesList() {
   const filters = useAppSelector((state) => state.filter.value)
   const filteredInvoice = useAppSelector((state) => state.filteredInvoice.value)
   const { data, status } = useSession()
-      
-
   useEffect(() => {
-    const getInvoice = () => {
-      const checkedFilter = filters.filter((filter) => filter.checked === true)
-
-      let filteredInvoice = invoices.filter(
-        (invoice) => invoice.status === checkedFilter[0]?.value
-      )
-      if (checkedFilter[0]) {
-        return filteredInvoice
-      } else {
-        return invoices
-      }
-    }
-    // console.log(session && filteredInvoice.length === 0)
-    dispatch(filterInvoice(getInvoice()))
+    dispatch(filterInvoice(getFilteredInvoice(filters, invoices)))
+    
   }, [filters, invoices])
 
   return (
