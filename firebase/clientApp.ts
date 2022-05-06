@@ -4,13 +4,13 @@ import { getFirestore } from 'firebase/firestore'
 
 //import credentials from env file
 const firebaseConfig = {
-  apiKey: "AIzaSyAe2UCatguUZlnuKDukLoIe50px6mv_UmI",
-  authDomain: "invoice-db-28716.firebaseapp.com",
-  projectId: "invoice-db-28716",
-  storageBucket: "invoice-db-28716.appspot.com",
-  messagingSenderId: "393945742923",
-  appId: "1:393945742923:web:c5a9b38ab7d5ff55df17ce",
-  measurementId: "G-W2837XCN1K"
+  apiKey: "AIzaSyCioKvmucLIKdFwHe3Eq6zZW9iEbRBU5WE",
+  authDomain: "fir-invoice-bd549.firebaseapp.com",
+  projectId: "fir-invoice-bd549",
+  storageBucket: "fir-invoice-bd549.appspot.com",
+  messagingSenderId: "410418200082",
+  appId: "1:410418200082:web:8e7f5a89a25d94ef0922cb",
+  measurementId: "G-6X6KVWRNN2"
 }
 
 let App
