@@ -1,5 +1,6 @@
 import { Formik } from "formik"
 import { AnimatePresence } from "framer-motion"
+import toast from "react-hot-toast"
 import { initialValues, validationSchema } from "data/form"
 import Button from "../shared/Buttons"
 import Fields from "./Fields"
@@ -19,6 +20,7 @@ import {
   EditInvoiceFormHeading as Heading,
   EditInvoiceFormButtons as Buttons,
 } from "./Components"
+import { getInvoice } from "utilities/Misc"
 
 interface CreateEditFormInterface {
   invoice: InvoiceInterface
@@ -34,12 +36,13 @@ function CreateEditForm({ invoice }: CreateEditFormInterface) {
 
     const invoiceDoc = await doc(db, "invoices", invoice.id)
     await updateDoc(invoiceDoc, newValue)
+    toast.loading(`Editing Invoice ${invoice.id}`)
     const data = await getDocs(invoiceCollectionRef)
-    Store.set(
-      "invoices",
-      data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-    )
-    dispatch(updateInvoice(Store.get("invoices")))
+
+    const invoices: InvoiceInterface[] = getInvoice(data)
+    dispatch(updateInvoice(invoices))
+    toast.dismiss()
+    toast.success(`Successfully edited Invoice ${invoice.id}`)
 
     onSubmitProps.resetForm()
     dispatch(toggleEditForm(false))
@@ -69,7 +72,7 @@ function CreateEditForm({ invoice }: CreateEditFormInterface) {
             <Form edit>
               <Heading>
                 Edit <span>#</span>
-                {invoice.id}
+                {invoice.id.toUpperCase()}
               </Heading>
               <Fields />
 

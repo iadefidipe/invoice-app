@@ -1,4 +1,5 @@
 import { Formik } from "formik"
+import toast from "react-hot-toast"
 import { AnimatePresence } from "framer-motion"
 import { initialValues, validationSchema } from "data/form"
 import Button from "../shared/Buttons"
@@ -26,23 +27,36 @@ function CreateInvoiceForm() {
 
   //TODO: on form upload value to firebase, get new data from fire base, send to local storage and from local storage to redux start
   const onSubmit = async (value: FormDataInterface, onSubmitProps: any) => {
-    const newValue = createInvoice(value)
-    await addDoc(invoiceCollectionRef, newValue)
-    const data = await getDocs(invoiceCollectionRef)
-    const invoices: InvoiceInterface[] = getInvoice(data)
-    dispatch(updateInvoice(invoices))
-    onSubmitProps.resetForm()
-    dispatch(toggleForm(false))
-    dispatch(toggleExit(true))
+    try {
+      const newValue = createInvoice(value)
+      await addDoc(invoiceCollectionRef, newValue)
+      toast.loading("Adding new invoice, Please wait!")
+
+      const data = await getDocs(invoiceCollectionRef)
+      const invoices: InvoiceInterface[] = getInvoice(data)
+      dispatch(updateInvoice(invoices))
+    toast.dismiss()
+      toast.success(`Successfully added New Invoice`)
+
+      onSubmitProps.resetForm()
+      dispatch(toggleForm(false))
+      dispatch(toggleExit(true))
+    } catch (err) {
+      toast.error("This is an error!")
+    }
   }
 
   //TODO: add draft to firebase
   const addDraft = async (value: FormDataInterface) => {
     const newValue = createInvoice(value)
     await addDoc(invoiceCollectionRef, { ...newValue, status: "draft" })
+    toast.loading("Adding new Draft invoice, Please wait!")
+
     const data = await getDocs(invoiceCollectionRef)
     const invoices: InvoiceInterface[] = getInvoice(data)
     dispatch(updateInvoice(invoices))
+    toast.dismiss()
+    toast.success(`Successfully added Draft Invoice`)
 
     dispatch(toggleForm(false))
     dispatch(toggleExit(true))

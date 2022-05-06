@@ -19,6 +19,7 @@ function MyApp({
         </Layout>
       </Provider>
     </SessionProvider>
+
   )
 }
 
