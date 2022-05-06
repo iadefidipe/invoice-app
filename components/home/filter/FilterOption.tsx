@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import Image from "next/image"
 import IconCheck from "../../../assets/icon-check.svg"
 import { FilterDropdown, Option, Checkbox } from "./FilterOption.style"
-import filter, { toggleFilter, filterState } from "redux/features/filter"
+import filter, { toggleFilter, FilterInterface } from "redux/features/filter"
 import { useState } from "react"
 
 // type filterOptionProp = {
@@ -15,7 +15,7 @@ function FilterOption() {
 
   const filters = useAppSelector((state) => state.filter.value)
 
-  function handleChange(id: number, array: filterState[]) {
+  function handleChange(id: number, array: FilterInterface[]) {
     const newFilters = array.map((filter) => {
       if (!(filter.id === id)) {
         return { ...filter, checked: false }

@@ -10,14 +10,14 @@ import { db } from "../firebase/clientApp"
 import { useAppDispatch, useAppSelector } from "../redux/types/reduxTypes"
 import { collection } from "firebase/firestore"
 import InvoicesList from "components/home/invoice/invoiceList"
-import { addDoc, getDocs } from "firebase/firestore"
+import {  getDocs } from "firebase/firestore"
 import Main from "../components/home/Main"
 import { updateInvoice } from "redux/features/Invoices"
 import Store from "store"
 import { InvoiceInterface } from "../data/form"
 import { getInvoice, getFilteredInvoice } from "utilities/Misc"
 import { Shadow } from "styles/HelperStyles"
-import { filterInvoice } from "redux/features/filteredInvoice"
+
 
 // component style
 const Wrapper = styled.div`
@@ -43,7 +43,7 @@ const Home = () => {
   // dispatch(updateInvoice(invoices))
   const exit = useAppSelector((state) => state.exit.value)
   const invoice = useAppSelector((state) => state.invoice.value)
-  console.log("outside useeffect")
+  
 
   useEffect(() => {
     // get data from firebase once app loads
@@ -54,7 +54,6 @@ const Home = () => {
     }
     getData()
 
-    // console.log("in the function")
   }, [])
 
   return (
