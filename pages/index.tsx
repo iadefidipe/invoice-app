@@ -1,5 +1,5 @@
 import type { NextPage, GetServerSideProps } from "next"
-
+import axios from "axios"
 import Head from "next/head"
 import Image from "next/image"
 import Header from "components/home/header/Header"
@@ -15,7 +15,7 @@ import Main from "../components/home/Main"
 import { updateInvoice } from "redux/features/Invoices"
 import Store from "store"
 import { InvoiceInterface } from "../data/form"
-import { getInvoice, getFilteredInvoice } from "utilities/Misc"
+import { getInvoice, getFilteredInvoice, apiEndpoint } from "utilities/Misc"
 import { Shadow } from "styles/HelperStyles"
 
 // component style
@@ -33,14 +33,22 @@ export const InnerWrapper = styled.main`
 export const invoiceCollectionRef = collection(db, "invoices")
 
 interface HomeInterface {
-  invoices: InvoiceInterface[]
+  data: InvoiceInterface[]
 }
 
-const Home = ({ invoices }: HomeInterface) => {
+const Home = ({ data }: HomeInterface) => {
   const dispatch = useAppDispatch()
-  dispatch(updateInvoice(invoices))
+  dispatch(updateInvoice(data))
   const exit = useAppSelector((state) => state.exit.value)
   const invoice = useAppSelector((state) => state.invoice.value)
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const data = await axios.get(apiEndpoint)
+      console.log(data)
+    }
+    getPosts()
+  })
 
   return (
     <>
@@ -66,10 +74,10 @@ const Home = ({ invoices }: HomeInterface) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await getDocs(invoiceCollectionRef)
-  const invoices: InvoiceInterface[] = getInvoice(data)
+  const { data } = await axios.get(apiEndpoint)
+
   return {
-    props: { invoices },
+    props: { data },
   }
 }
 

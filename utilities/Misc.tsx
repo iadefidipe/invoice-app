@@ -47,3 +47,5 @@ export const getFilteredInvoice = (
     return invoices
   }
 }
+
+export const apiEndpoint ='https://invoice-db-api.herokuapp.com/invoices'

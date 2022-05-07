@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import toast from "react-hot-toast"
+import axios from "axios"
 import ScrollLock from "react-scrolllock"
 import { motion, AnimatePresence } from "framer-motion"
 import Button from "../shared/Buttons"
@@ -14,7 +15,7 @@ import Store from "store"
 
 import { invoiceCollectionRef } from "pages"
 import { useRouter } from "next/router"
-import { getInvoice } from "utilities/Misc"
+import { apiEndpoint, getInvoice } from "utilities/Misc"
 import { InvoiceInterface } from "data/form"
 
 const Backdrop = styled(motion.div)`
@@ -102,13 +103,14 @@ export default function DeletePopup({ invoice }: DeletePopupInterface) {
 
   //Delete Invovoice based on ID
   const deleteInvoice = async (id: any) => {
-    const invoiceDoc = doc(db, "invoices", id)
-    await deleteDoc(invoiceDoc)
+    // const invoiceDoc = doc(db, "invoices", id)
+    // await deleteDoc(invoiceDoc)
     toast.loading(`Deleting Invoice ${id}`)
-
-    const data = await getDocs(invoiceCollectionRef)
-    const invoices: InvoiceInterface[] = getInvoice(data)
-    dispatch(updateInvoice(invoices))
+    // const data = await getDocs(invoiceCollectionRef)
+    // const invoices: InvoiceInterface[] = getInvoice(data)
+    await axios.delete(`${apiEndpoint}/${id}`)
+    const { data } = await axios.get(apiEndpoint)
+    dispatch(updateInvoice(data))
     toast.dismiss()
     toast.success(`Successfully Deleted Invoice ${id}`)
     dispatch(popUp(false))

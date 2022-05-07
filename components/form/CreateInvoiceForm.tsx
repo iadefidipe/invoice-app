@@ -1,5 +1,7 @@
 import { Formik } from "formik"
 import toast from "react-hot-toast"
+import axios from "axios"
+import { v4 as uuidv4 } from "uuid"
 import { useRouter } from "next/router"
 import { AnimatePresence } from "framer-motion"
 import { initialValues, validationSchema } from "data/form"
@@ -19,7 +21,7 @@ import { InvoiceInterface, FormDataInterface } from "data/form"
 import { createInvoice } from "utilities/form"
 import Store from "store"
 import Form from "./Form"
-import { getInvoice } from "utilities/Misc"
+import { apiEndpoint, getInvoice } from "utilities/Misc"
 
 function CreateInvoiceForm() {
   const router = useRouter()
@@ -32,12 +34,15 @@ function CreateInvoiceForm() {
   const onSubmit = async (value: FormDataInterface, onSubmitProps: any) => {
     try {
       const newValue = createInvoice(value)
-      await addDoc(invoiceCollectionRef, newValue)
-      toast.loading("Adding new invoice, Please wait!")
+      const newInvoice = { id: uuidv4(), ...newValue }
+      await axios.post(apiEndpoint, newInvoice)
+      const { data } = await axios.get(apiEndpoint)
 
-      const data = await getDocs(invoiceCollectionRef)
-      const invoices: InvoiceInterface[] = getInvoice(data)
-      dispatch(updateInvoice(invoices))
+      // await addDoc(invoiceCollectionRef, newValue)
+      toast.loading("Adding new invoice, Please wait!")
+      // const data = await getDocs(invoiceCollectionRef)
+      // const invoices: InvoiceInterface[] = getInvoice(data)
+      dispatch(updateInvoice(data))
       toast.dismiss()
       toast.success(`Successfully added New Invoice`)
 
@@ -54,12 +59,14 @@ function CreateInvoiceForm() {
   //TODO: add draft to firebase
   const addDraft = async (value: FormDataInterface) => {
     const newValue = createInvoice(value)
-    await addDoc(invoiceCollectionRef, { ...newValue, status: "draft" })
+    const newInvoice = { id: uuidv4(), ...newValue, status: "draft" }
+    await axios.post(apiEndpoint, newInvoice)
+    const { data } = await axios.get(apiEndpoint)
+    // await addDoc(invoiceCollectionRef, { ...newValue, status: "draft" })
     toast.loading("Adding new Draft invoice, Please wait!")
-
-    const data = await getDocs(invoiceCollectionRef)
-    const invoices: InvoiceInterface[] = getInvoice(data)
-    dispatch(updateInvoice(invoices))
+    // const data = await getDocs(invoiceCollectionRef)
+    // const invoices: InvoiceInterface[] = getInvoice(data)
+    dispatch(updateInvoice(data))
     toast.dismiss()
     toast.success(`Successfully added Draft Invoice`)
 

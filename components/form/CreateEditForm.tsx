@@ -1,5 +1,6 @@
 import { Formik } from "formik"
 import { AnimatePresence } from "framer-motion"
+import axios from "axios"
 import toast from "react-hot-toast"
 import { initialValues, validationSchema } from "data/form"
 import Button from "../shared/Buttons"
@@ -20,7 +21,7 @@ import {
   EditInvoiceFormHeading as Heading,
   EditInvoiceFormButtons as Buttons,
 } from "./Components"
-import { getInvoice } from "utilities/Misc"
+import { apiEndpoint, getInvoice } from "utilities/Misc"
 
 interface CreateEditFormInterface {
   invoice: InvoiceInterface
@@ -34,13 +35,14 @@ function CreateEditForm({ invoice }: CreateEditFormInterface) {
   const onSubmit = async (value: FormDataInterface, onSubmitProps: any) => {
     const newValue = createInvoice(value)
 
-    const invoiceDoc = await doc(db, "invoices", invoice.id)
-    await updateDoc(invoiceDoc, newValue)
+    await axios.patch(`${apiEndpoint}/${invoice.id}`, newValue)
+    const { data } = await axios.get(apiEndpoint)
+    // const invoiceDoc = await doc(db, "invoices", invoice.id)
+    // await updateDoc(invoiceDoc, newValue)
     toast.loading(`Editing Invoice ${invoice.id}`)
-    const data = await getDocs(invoiceCollectionRef)
-
-    const invoices: InvoiceInterface[] = getInvoice(data)
-    dispatch(updateInvoice(invoices))
+    // const data = await getDocs(invoiceCollectionRef)
+    // const invoices: InvoiceInterface[] = getInvoice(data)
+    dispatch(updateInvoice(data))
     toast.dismiss()
     toast.success(`Successfully edited Invoice ${invoice.id}`)
 
