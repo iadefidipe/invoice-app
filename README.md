@@ -17,17 +17,15 @@ This is a solution to the [Invoice app challenge on Frontend Mentor](https://www
     - [Continued development](#continued-development)
   - [Author](#author)
   - [Acknowledgments](#acknowledgments)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
 
 ### Intro
  Hi, there!
  
- Thank you for checking out my solution to the  [invoice app challenge](https://invoice-app-crud.vercel.app/) from Frontend Mentor. grinning
+ Thank you for checking out my solution to the  [invoice app challenge](https://invoice-crud.netlify.app/) from Frontend Mentor.
 
 Feel free to look around and explore! 
+
 share comments here [Linkedin Post](https://www.linkedin.com/posts/iadefidipe_invoices-0-frontend-mentor-activity-6921833013764890625-sK3A?utm_source=linkedin_share&utm_medium=member_desktop_web)
 
 ### The challenge
@@ -50,7 +48,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Git Repo Link](https://github.com/iadefidipe/invoice-app)
-- Live Site URL: [Live site URL ](https://invoice-app-crud.vercel.app/)
+- Live Site URL: [Live site URL ](https://invoice-crud.netlify.app/)
 
 ## My process
 
