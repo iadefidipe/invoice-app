@@ -4,7 +4,7 @@ import { Provider } from "react-redux"
 import { store } from "../redux/store"
 import { SessionProvider } from "next-auth/react"
 import { AnimatePresence } from "framer-motion"
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast"
 function MyApp({
   Component,
   pageProps: { session, ...pageProps },
@@ -13,7 +13,7 @@ function MyApp({
   return (
     <SessionProvider session={session}>
       <Provider store={store}>
-        <Toaster/>
+        <Toaster />
         <Layout>
           <AnimatePresence exitBeforeEnter>
             <Component {...pageProps} key={router.route} />
@@ -21,8 +21,8 @@ function MyApp({
         </Layout>
       </Provider>
     </SessionProvider>
-
   )
 }
+
 
 export default MyApp

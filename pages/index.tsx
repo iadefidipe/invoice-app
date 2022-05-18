@@ -17,6 +17,8 @@ import Store from "store"
 import { InvoiceInterface } from "../data/form"
 import { getInvoice, getFilteredInvoice, apiEndpoint } from "utilities/Misc"
 import { Shadow } from "styles/HelperStyles"
+import { useSession } from "next-auth/react"
+import NoInvoices from "components/home/invoice/NoInvoice"
 
 // component style
 const Wrapper = styled.div`
@@ -29,6 +31,12 @@ export const InnerWrapper = styled.main`
   max-width: 730px;
   margin: 100px auto 0;
 `
+const SignInWrapper = styled.div`
+  height: 100%;
+  color: white;
+  display: grid;
+  place-items: center;
+`
 
 export const invoiceCollectionRef = collection(db, "invoices")
 
@@ -37,6 +45,8 @@ interface HomeInterface {
 }
 
 const Home = ({ data }: HomeInterface) => {
+  const { data: session } = useSession()
+
   const dispatch = useAppDispatch()
   dispatch(updateInvoice(data))
   const exit = useAppSelector((state) => state.exit.value)
@@ -61,14 +71,22 @@ const Home = ({ data }: HomeInterface) => {
         />
         <link rel='apple-touch-icon' href='/favicon.png' />
       </Head>
-      <Wrapper>
-        <InnerWrapper>
-          <Header />
-          <InvoicesList />
-        </InnerWrapper>
+      {session ? (
+        <Wrapper>
+          <InnerWrapper>
+            <Header />
+            <InvoicesList />
+          </InnerWrapper>
 
-        <CreateInvoiceForm />
-      </Wrapper>
+          <CreateInvoiceForm />
+        </Wrapper>
+      ) : (
+        <Wrapper>
+          <SignInWrapper>
+            <NoInvoices />
+          </SignInWrapper>
+        </Wrapper>
+      )}
     </>
   )
 }

@@ -1,4 +1,6 @@
 import styled from "styled-components"
+import { useSession } from "next-auth/react"
+
 import { Heading2 } from "components/shared/Headings"
 import { fontStylesA } from "components/shared/typography"
 import Image from "next/image"
@@ -29,14 +31,20 @@ const Paragraph = styled.p`
 `
 
 export default function NoInvoices() {
+  const { data: session } = useSession()
+
   return (
     <Wrapper>
       <ImageIcon src={illustration} alt='' />
       <Heading>There is nothing here.</Heading>
-      <Paragraph>
+      {session ? (<Paragraph>
         Create an invoice by clicking the <span>New</span> button and get
         started.
+      </Paragraph>) : (
+        <Paragraph>
+        Click on <span>Avartar Icon</span> to Sign in
       </Paragraph>
+      )}
     </Wrapper>
   )
 }

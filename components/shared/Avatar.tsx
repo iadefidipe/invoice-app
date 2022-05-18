@@ -20,7 +20,7 @@ const AvatarImage = styled.div``
 
 function Avatar() {
   const { data: session } = useSession()
-  console.log(session)
+
   return (
     <Link href={session ? "/api/auth/signout" : "/api/auth/signin"} passHref>
       <Button
